@@ -1,7 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-family-sans: "Inter", sans-serif;
+  --font-family-body: "Noto-sans", sans-serif;
+  --font-family-label: "Raleway", sans-serif;
+  --font-family-label--font-weight: 300;
 
-  --color-avocado-100: #f0f8f4;
+  --color-celadon: #ace1af;
+  --color-celadon-light: #dde9d8;
+  --color-celadon-dark: #638475;
+
+  --px-h: "64";
+}
+
+html {
+  scroll-behavior: smooth;
 }
