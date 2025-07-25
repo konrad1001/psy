@@ -1,10 +1,14 @@
 // types.ts
+export interface NavigationData {
+  logoImage?: SanityImage;
+  logoText: string;
+}
+
 export interface HomePageData {
   title: string;
   therapistName: string;
   pronouns: string;
   introText: string;
-  aboutLink: string;
   photo?: SanityImage;
   practiceTitle: string;
   practiceText: string;
@@ -16,6 +20,7 @@ export interface AboutPageData {
   label: string;
   shortBio: string;
   longBio: string;
+  cards?: AboutPageCard[];
 }
 
 export interface ServicesPageData {
@@ -31,9 +36,41 @@ export interface ServiceItem {
   description: string;
 }
 
+export interface ContactPageData {
+  _type: "contactPage";
+  _id: string;
+  label: string;
+  title: string;
+  description: string;
+  contactFormTitle: string;
+  details: ContactDetails;
+  location: ContactLocation;
+}
+
+export interface ContactDetails {
+  title: string;
+  name: string;
+  email: string;
+}
+
+export interface ContactLocation {
+  title: string;
+  addressFields: string[];
+  mapEmbedUrl: string;
+}
+
+export interface AboutPageCard {
+  title: string;
+  body: string;
+}
+
 export interface SanityImage {
   asset: {
     _ref: string;
     _type: "reference";
   };
+}
+
+export interface FooterData {
+  footerText: string;
 }

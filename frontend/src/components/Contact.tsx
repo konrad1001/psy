@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Label from "./label";
+import type { ContactPageData } from "../types";
 
 interface ContactProps {
-  content: any; // Replace `any` with the actual type for Contact data
+  content: ContactPageData;
 }
 
 function Contact({ content }: ContactProps) {
@@ -41,28 +42,27 @@ function Contact({ content }: ContactProps) {
     setIsSubmitted(true);
   };
 
+  console.log("Contact Page Data:", content);
+
   return (
     <section
       className="bg-celadon-light flex flex-col space-y-8 px-16 py-20 sm:px-16 md:px-32 lg:px-64"
       id="contact"
     >
       <div className="flex">
-        <Label text={"Let's talk"} />
+        <Label text={content.label} />
       </div>
 
-      <h1 className="font-family-label text-4xl font-bold">Contact me</h1>
+      <h1 className="font-family-label text-4xl font-bold">{content.title}</h1>
 
-      <p className="font-family-body mb-16 font-thin">
-        I offer a free 15-minute telephone consultation for anyone who is
-        interested in becoming a client.
-      </p>
+      <p className="font-family-body mb-16 font-thin">{content.description}</p>
 
       {/* Main Content */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Left: Contact Form */}
         <div className="rounded-lg bg-slate-200/50 p-8 shadow-md outline-1 outline-black/10">
           <h2 className="font-family-label mb-8 text-xl font-bold">
-            Send Me a Message
+            {content.contactFormTitle}
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
@@ -136,36 +136,35 @@ function Contact({ content }: ContactProps) {
         <div className="space-y-8 rounded-lg bg-slate-200/50 p-8 shadow-md outline-1 outline-black/10">
           <div>
             <h2 className="font-family-label mb-4 text-xl font-bold">
-              Contact Details
+              {content.details.title}
             </h2>
             <p className="text-s font-family-body text-neutral-600">
-              Adam Souter
+              {content.details.name}
             </p>
             <p className="text-s font-family-body font-thin text-neutral-600">
-              adam.souter@yahoo.co.uk
+              {content.details.email}
             </p>
           </div>
           <div>
             <h2 className="font-family-label mb-4 text-xl font-bold">
-              My Location
+              {content.location.title}
             </h2>
-            <p className="text-s font-family-body font-thin text-neutral-600">
-              3 Montpelier Avenue
-            </p>
-            <p className="text-s font-family-body font-thin text-neutral-600">
-              Ealing
-            </p>
-            <p className="text-s font-family-body font-thin text-neutral-600">
-              London, W5 2XP
-            </p>
+            {content.location.addressFields.map((line, index) => (
+              <p
+                key={index}
+                className="text-s font-family-body font-thin text-neutral-600"
+              >
+                {line}
+              </p>
+            ))}
           </div>
           <div>
             <h2 className="font-family-label mb-4 text-xl font-bold">
-              Find Me
+              {content.location.title}
             </h2>
             <div className="rounded p-4">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.612996896099!2d-0.3122067230674845!3d51.520315671816206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487612738584c6fb%3A0x939b8dfc8f47421d!2s3%20Montpelier%20Ave%2C%20London%20W5%202XP!5e0!3m2!1sen!2suk!4v1753038680398!5m2!1sen!2suk"
+                src={content.location.mapEmbedUrl}
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
