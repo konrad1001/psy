@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import type { NavigationData } from "../types";
+import { urlFor } from "../utils/urlFor";
 
 interface NavigationProps {
-  content: any;
+  content: NavigationData;
 }
 
 function Navigation({ content }: NavigationProps) {
@@ -13,11 +15,11 @@ function Navigation({ content }: NavigationProps) {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id); // Set the active section based on the `id`
+            setActiveSection(entry.target.id);
           }
         });
       },
-      { threshold: 0.5 }, // Trigger when 50% of the section is visible
+      { threshold: 0.5 },
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -29,10 +31,18 @@ function Navigation({ content }: NavigationProps) {
   return (
     <div className="shadow-xs sticky top-0 z-50 flex items-center justify-between bg-white px-64 py-4 text-black">
       <div className="flex flex-row items-center space-x-2">
-        <img src="src/assets/logo.svg" alt="Logo" className="h-12 w-12" />
+        {content.logoImage != null ? (
+          <img
+            src={urlFor(content.logoImage).url()}
+            alt="Logo"
+            className="h-12 w-12"
+          />
+        ) : (
+          <img src="src/assets/logo.svg" alt="Logo" className="h-12 w-12" />
+        )}
         <div>
           <h1 className="font-family-body text-celadon-dark font-black">
-            Ealing Psychotherapy
+            {content.logoText}
           </h1>
         </div>
       </div>
