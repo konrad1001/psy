@@ -1,7 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import type { AboutPageData } from "../types";
 import Label from "./label";
-import { PortableText } from "@portabletext/react";
+import {
+  PortableText,
+  type PortableTextBlockComponent,
+  type PortableTextComponent,
+  type PortableTextComponentProps,
+  type PortableTextMarkComponentProps,
+  type PortableTextProps,
+  type PortableTextReactComponents,
+} from "@portabletext/react";
+
+import type {
+  PortableTextBlock,
+  PortableTextSpan,
+  PortableTextLink,
+} from "@portabletext/types";
 
 interface AboutProps {
   content: AboutPageData;
@@ -30,6 +44,40 @@ function About({ content }: AboutProps) {
 
   console.log(content.trainingAndExperience);
 
+  const components: Partial<PortableTextReactComponents> = {
+    marks: {
+      link: ({ value, children }: PortableTextMarkComponentProps) => {
+        const target = value?.href?.startsWith("http") ? "_blank" : undefined;
+        return (
+          <a
+            className="text-blue-900 hover:underline"
+            href={value?.href || "#"}
+            target={target}
+            rel={target === "_blank" ? "noopener noreferrer" : undefined}
+          >
+            {children}
+          </a>
+        );
+      },
+      strong: ({ children }) => (
+        <strong className="font-semibold text-slate-600">{children}</strong>
+      ),
+    },
+    block: {
+      // Ex. 1: customizing common block types
+      // h6: (type) => <h6 className="text-6xl text-red-500">{type.children}</h6>,
+      p: (type) => <p className="text-s text-red-700">{type.children}</p>,
+      b: (type) => <b className="text-slate-500">{type.children}</b>,
+    },
+    list: {
+      bullet: ({ children }) => (
+        <ul className="mt-xl list-inside list-disc space-y-1 marker:text-slate-500">
+          {children}
+        </ul>
+      ),
+    },
+  };
+
   return (
     <section
       id="about"
@@ -43,30 +91,24 @@ function About({ content }: AboutProps) {
 
       <div className="mb-16" />
 
-      <div className="mb-32 flex flex-row">
+      <div className="mb-16 flex flex-row">
         <h1 className="font-family-label flex-2 pr-32 text-4xl font-bold">
           Im Adam Souter.
           <br />A Gestalt Psychotherapist.
         </h1>
-        {/* <div className="flex-1" />
-        <p className="font-family-body flex-3 font-thin">{content.longBio}</p> */}
       </div>
 
       {/* <p className="font-family-body pb-8 text-lg font-thin"> */}
-      <div className="font-family-body pb-8 text-lg font-thin">
-        <PortableText value={content.trainingAndExperience}></PortableText>
-      </div>
-
-      {/* <div className="mb-16 flex flex-row items-stretch space-x-8">
-        {(content.cards ?? []).map((card, index) => (
-          <div
-            className={`${(content.cards?.length ?? 0) == 1 ? "pr-96" : "flex-1"}`}
-            key={index}
-          >
-            <Card key={index} title={card.title} body={card.body} />
+      <div className="mr-16 rounded-lg bg-white p-8 pb-8 shadow-md">
+        {content.trainingAndExperience.map((item, index) => (
+          <div className="my-4" key={index}>
+            <PortableText
+              value={item.text}
+              components={components}
+            ></PortableText>
           </div>
         ))}
-      </div> */}
+      </div>
     </section>
   );
 }

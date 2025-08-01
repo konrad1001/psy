@@ -1,3 +1,5 @@
+import type { PortableTextBlock } from "@portabletext/react";
+
 // types.ts
 export interface NavigationData {
   logoImage?: SanityImage;
@@ -20,7 +22,7 @@ export interface AboutPageData {
   _type: "aboutPage";
   _id: string;
   label: string;
-  trainingAndExperience: any[];
+  trainingAndExperience: ExperienceItem[];
   shortBio: string;
   longBio: string;
   cards?: AboutPageCard[];
@@ -60,6 +62,10 @@ export interface ContactLocation {
   title: string;
   addressFields: string[];
   mapEmbedUrl: string;
+}
+
+export interface ExperienceItem {
+  text: PortableTextBlock[];
 }
 
 export interface AboutPageCard {

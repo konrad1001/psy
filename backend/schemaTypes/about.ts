@@ -27,7 +27,18 @@ export default {
       title: 'Training and Experience',
       type: 'array',
       description: "Details about the therapist's training and experience.",
-      of: [{type: 'block'}],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'text',
+              type: 'array',
+              of: [{type: 'block'}],
+            },
+          ],
+        },
+      ],
     },
 
     {
