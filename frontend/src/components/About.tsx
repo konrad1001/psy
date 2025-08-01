@@ -1,24 +1,23 @@
 import { useState, useEffect } from "react";
 import type { AboutPageData } from "../types";
 import Label from "./label";
+import { PortableText } from "@portabletext/react";
 
 interface AboutProps {
   content: AboutPageData;
 }
 
 function About({ content }: AboutProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
+          // setIsVisible(entry.isIntersecting);
         });
       },
-      { threshold: 0.5 },
+      { threshold: 0.3 },
     );
 
     const target = document.getElementById("about");
@@ -29,28 +28,36 @@ function About({ content }: AboutProps) {
     };
   }, []);
 
+  console.log(content.trainingAndExperience);
+
   return (
     <section
       id="about"
-      className={`flex h-screen flex-col px-64 py-24 transition-all duration-1000 ease-in-out ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+      className={`ease-in-ou flex h-screen flex-col bg-slate-200 px-64 py-24 transition-all duration-1000 ${
+        isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
       <div className="flex">
         <Label text={content.label} />
       </div>
 
-      <div className="mb-8" />
+      <div className="mb-16" />
 
       <div className="mb-32 flex flex-row">
         <h1 className="font-family-label flex-2 pr-32 text-4xl font-bold">
-          {content.shortBio}
+          Im Adam Souter.
+          <br />A Gestalt Psychotherapist.
         </h1>
-        <div className="flex-1" />
-        <p className="font-family-body flex-3 font-thin">{content.longBio}</p>
+        {/* <div className="flex-1" />
+        <p className="font-family-body flex-3 font-thin">{content.longBio}</p> */}
       </div>
 
-      <div className="mb-16 flex flex-row items-stretch space-x-8">
+      {/* <p className="font-family-body pb-8 text-lg font-thin"> */}
+      <div className="font-family-body pb-8 text-lg font-thin">
+        <PortableText value={content.trainingAndExperience}></PortableText>
+      </div>
+
+      {/* <div className="mb-16 flex flex-row items-stretch space-x-8">
         {(content.cards ?? []).map((card, index) => (
           <div
             className={`${(content.cards?.length ?? 0) == 1 ? "pr-96" : "flex-1"}`}
@@ -59,7 +66,7 @@ function About({ content }: AboutProps) {
             <Card key={index} title={card.title} body={card.body} />
           </div>
         ))}
-      </div>
+      </div> */}
     </section>
   );
 }

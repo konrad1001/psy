@@ -23,6 +23,14 @@ export default {
       description: 'A detailed biography of the therapist.',
     },
     {
+      name: 'trainingAndExperience',
+      title: 'Training and Experience',
+      type: 'array',
+      description: "Details about the therapist's training and experience.",
+      of: [{type: 'block'}],
+    },
+
+    {
       name: 'cards',
       title: 'Cards',
       type: 'array',

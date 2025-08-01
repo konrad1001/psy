@@ -9,15 +9,18 @@ export interface HomePageData {
   therapistName: string;
   pronouns: string;
   introText: string;
-  photo?: SanityImage;
+  photo: SanityImage;
   practiceTitle: string;
   practiceText: string;
+  splashImage: SanityImage;
+  roomImage: SanityImage;
 }
 
 export interface AboutPageData {
   _type: "aboutPage";
   _id: string;
   label: string;
+  trainingAndExperience: any[];
   shortBio: string;
   longBio: string;
   cards?: AboutPageCard[];

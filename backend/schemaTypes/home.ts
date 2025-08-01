@@ -47,5 +47,14 @@ export default {
       title: 'My Practice Description',
       type: 'text',
     },
+    {
+      name: 'splashImage',
+      title: 'Splash Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {name: 'roomImage', title: 'Room Image', type: 'image', options: {hotspot: true}},
   ],
 }

@@ -14,6 +14,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 interface AppData {
   navigation: NavigationData | null;
@@ -83,14 +84,16 @@ function App() {
     return <div>Loading...</div>;
 
   return (
-    <div>
-      <Navigation content={data.navigation} />
-      <Home content={data.homePage} />
-      <About content={data.aboutPage} />
-      <Services content={data.servicesPage} />
-      <Contact content={data.contactPage} />
-      <Footer content={data.footer} />
-    </div>
+    <ParallaxProvider>
+      <div>
+        <Navigation content={data.navigation} />
+        {/* <Home content={data.homePage} /> */}
+        <About content={data.aboutPage} />
+        {/* <Services content={data.servicesPage} /> */}
+        {/* <Contact content={data.contactPage} /> */}
+        {/* <Footer content={data.footer} /> */}
+      </div>
+    </ParallaxProvider>
   );
 }
 
