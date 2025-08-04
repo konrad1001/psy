@@ -10,17 +10,17 @@ export default {
       description: 'Label that goes above the title, e.g., "About Me"',
     },
     {
-      name: 'shortBio',
-      title: 'Short Bio',
-      type: 'text',
-      rows: 5,
-      description: 'A short bio of name and accreditation.',
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+      description: 'The name of the therapist.',
     },
     {
-      name: 'longBio',
-      title: 'Long Bio',
-      type: 'text',
-      description: 'A detailed biography of the therapist.',
+      name: 'accreditation',
+      title: 'Accreditation',
+      type: 'string',
+      description:
+        "The therapist's accreditation details (Optional). Appears right below the name.",
     },
     {
       name: 'trainingAndExperience',
@@ -40,33 +40,73 @@ export default {
         },
       ],
     },
-
     {
-      name: 'cards',
-      title: 'Cards',
-      type: 'array',
-      description: 'Optional cards with a title and body. Maximum of two cards.',
-      of: [
+      name: 'supportAreas',
+      title: 'Key Areas of Support',
+      type: 'object',
+      description:
+        'A list of key areas in which the therapist has a special interest or additional experience.',
+      fields: [
         {
-          type: 'object',
-          fields: [
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+          description: 'Title for the key areas section, e.g., "Key areas of support"',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          description: 'A brief description of the key areas of support.',
+        },
+        {
+          name: 'items',
+          title: 'Items',
+          type: 'array',
+          of: [
             {
-              name: 'title',
-              title: 'Card Title',
-              type: 'string',
-              validation: (Rule: any) => Rule.required(),
-            },
-            {
-              name: 'body',
-              title: 'Card Body',
-              type: 'text',
-              rows: 5,
-              validation: (Rule: any) => Rule.required(),
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Title',
+                  type: 'string',
+                },
+                {
+                  name: 'description',
+                  title: 'Description',
+                  type: 'text',
+                },
+              ],
             },
           ],
         },
+        {
+          name: 'specificNeedImage',
+          title: 'Specific Need Image',
+          description: 'Optional icon',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'specificNeedTitle',
+          title: 'Specific Need Title',
+          type: 'string',
+        },
+        {
+          name: 'specificNeedDescription',
+          title: 'Specific Need Description',
+          type: 'text',
+        },
+        {
+          name: 'contactButtonText',
+          title: 'Contact Button Text',
+          type: 'string',
+          description: 'Text for the contact button.',
+        },
       ],
-      validation: (Rule: any) => Rule.max(2),
     },
   ],
 }

@@ -16,28 +16,29 @@ export default {
       description: 'Main heading',
     },
     {
-      name: 'services',
-      title: 'Services',
+      name: 'body',
+      title: 'Body',
+      type: 'array',
+      of: [{type: 'block'}],
+    },
+    {
+      name: 'figures',
+      title: 'Figures',
       type: 'array',
       of: [
         {
-          type: 'object',
-          title: 'Service',
-          fields: [
-            {
-              name: 'title',
-              title: 'Service Title',
-              type: 'string',
-            },
-            {
-              name: 'description',
-              title: 'Description',
-              type: 'text',
-              rows: 3,
-            },
-          ],
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
         },
       ],
+    },
+    {
+      name: 'secondaryBody',
+      title: 'Secondary Body',
+      type: 'array',
+      of: [{type: 'block'}],
     },
   ],
 }
