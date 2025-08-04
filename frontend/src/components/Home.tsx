@@ -10,7 +10,7 @@ function Home({ content }: HomeProps) {
   return (
     <section id="home" className="flex flex-col">
       <div className="">
-        <div className="flex flex-col items-center bg-slate-200 px-16 py-32 sm:px-16 md:flex-row md:px-24 lg:px-52 xl:px-64">
+        <div className="flex flex-col items-center bg-slate-200 px-16 py-24 sm:px-16 md:flex-row md:px-24 lg:px-52 xl:px-64">
           <div className="flex-4 mb-16 flex flex-col space-y-8 md:mb-0">
             <h3 className="font-family-label text-xl font-medium">
               {content.title.toUpperCase()}
@@ -19,7 +19,7 @@ function Home({ content }: HomeProps) {
               {content.therapistName}
             </h1>
             <h2 className="font-family-label text-4xl">{content.pronouns}</h2>
-            <p className="font-family-body font-thin">{content.introText}</p>
+            <p className="font-thin">{content.introText}</p>
           </div>
 
           <div className="flex flex-1"></div>
@@ -27,7 +27,7 @@ function Home({ content }: HomeProps) {
           {/* Image */}
           <div className="flex justify-center">
             <div className="relative">
-              <div className="from-celadon-dark/10 to-celadon-dark/50 absolute inset-0 rotate-3 transform rounded-2xl bg-gradient-to-br"></div>
+              <div className="absolute inset-0 rotate-3 transform rounded-2xl bg-gradient-to-br from-slate-600/50 to-slate-100/50"></div>
               <img
                 src={urlFor(content.photo).url()}
                 alt="Adam Souter, Gestalt Psychotherapist"
@@ -41,12 +41,12 @@ function Home({ content }: HomeProps) {
       {/* Practice Description */}
       <div>
         <ParallaxBanner
-          layers={[{ image: urlFor(content.splashImage).url(), speed: 0 }]}
+          layers={[{ image: urlFor(content.splashImage).url(), speed: -10 }]}
           className="aspect-[3/1]"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           <div className="absolute bottom-8 left-8 right-8 hidden px-16 text-white sm:px-16 md:block md:flex-row md:px-24 lg:px-52 xl:px-64">
-            <p className="font-family-body pb-8 text-center text-lg font-thin">
+            <p className="pb-8 text-center text-lg">
               My psychotherapy training was in Gestalt therapy, a holistic
               practice, that sees the mind, body and emotions as parts of the
               same whole. I will support you to make sense of your unique
@@ -60,7 +60,7 @@ function Home({ content }: HomeProps) {
       </div>
 
       <div className="flex flex-col items-center space-y-8 px-16 py-16 sm:px-16 md:hidden md:px-32 lg:px-64">
-        <p className="font-family-body pb-16 text-center font-thin">
+        <p className="font-family-body pb-0 text-center font-thin">
           My psychotherapy training was in Gestalt therapy, a holistic practice,
           that sees the mind, body and emotions as parts of the same whole. I
           will support you to make sense of your unique experience of the world,
@@ -73,12 +73,12 @@ function Home({ content }: HomeProps) {
 
       {/* Room Section */}
       <Parallax speed={0}>
-        <div className="flex flex-row items-center space-x-32 space-y-8 px-16 py-16 sm:px-16 md:px-32 lg:px-64">
-          <div className="flex flex-1 flex-col space-y-8 py-32">
+        <div className="flex flex-row items-center space-x-32 space-y-8 px-16 py-32 sm:px-16 md:px-32 lg:px-64">
+          <div className="flex flex-1 flex-col space-y-8">
             <p className="font-family-label text-2xl font-bold">
               A Safe, Welcoming Space
             </p>
-            <p className="font-family-body font-thin">
+            <p className="font-thin">
               Starting therapy can be daunting and finding the right therapist
               for you; someone that you are comfortable with, is so important.
               This website gives some information about me and my practice to
@@ -87,7 +87,7 @@ function Home({ content }: HomeProps) {
               get a feel for whether we might work well together.
             </p>
 
-            <p className="font-family-body flex-1 font-thin">
+            <p className="font-thin">
               Please get in touch for an initial, free 20-minute phone
               consultation so you can get a feel for whether we might work well
               together.

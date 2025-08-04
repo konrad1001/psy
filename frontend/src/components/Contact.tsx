@@ -42,11 +42,9 @@ function Contact({ content }: ContactProps) {
     setIsSubmitted(true);
   };
 
-  console.log("Contact Page Data:", content);
-
   return (
     <section
-      className="bg-celadon-light flex flex-col space-y-8 px-16 py-20 sm:px-16 md:px-32 lg:px-64"
+      className="flex flex-col space-y-8 bg-slate-200 px-16 py-20 sm:px-16 md:px-32 lg:px-64"
       id="contact"
     >
       <div className="flex">
@@ -55,12 +53,12 @@ function Contact({ content }: ContactProps) {
 
       <h1 className="font-family-label text-4xl font-bold">{content.title}</h1>
 
-      <p className="font-family-body mb-16 font-thin">{content.description}</p>
+      <p className="mb-16 font-thin">{content.description}</p>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Left: Contact Form */}
-        <div className="rounded-lg bg-slate-200/50 p-8 shadow-md outline-1 outline-black/10">
+        <div className="rounded-lg bg-slate-400/10 p-8 shadow-md outline-1 outline-black/10">
           <h2 className="font-family-label mb-8 text-xl font-bold">
             {content.contactFormTitle}
           </h2>
@@ -123,7 +121,7 @@ function Contact({ content }: ContactProps) {
                 className={`font-family-label rounded-full border px-6 py-2 text-sm transition-all duration-500 ease-in-out ${
                   isSubmitted
                     ? "bg-celadon"
-                    : "hover:bg-celadon-dark/50 border-neutral-500 hover:px-8"
+                    : "border-neutral-500 hover:bg-slate-400 hover:px-8"
                 }`}
               >
                 {isSubmitted ? "Message Sent " : "Send Message"}
@@ -133,27 +131,22 @@ function Contact({ content }: ContactProps) {
         </div>
 
         {/* Right: Contact Details */}
-        <div className="space-y-8 rounded-lg bg-slate-200/50 p-8 shadow-md outline-1 outline-black/10">
+        <div className="space-y-8 rounded-lg bg-slate-400/10 p-8 shadow-md outline-1 outline-black/10">
           <div>
             <h2 className="font-family-label mb-4 text-xl font-bold">
               {content.details.title}
             </h2>
-            <p className="text-s font-family-body text-neutral-600">
+            <p className="text-s font-thin text-neutral-600">
               {content.details.name}
             </p>
-            <p className="text-s font-family-body font-thin text-neutral-600">
-              {content.details.email}
-            </p>
+            <p className="text-s text-neutral-600">{content.details.email}</p>
           </div>
           <div>
             <h2 className="font-family-label mb-4 text-xl font-bold">
               {content.location.title}
             </h2>
             {content.location.addressFields.map((line, index) => (
-              <p
-                key={index}
-                className="text-s font-family-body font-thin text-neutral-600"
-              >
+              <p key={index} className="text-s font-thin text-neutral-600">
                 {line}
               </p>
             ))}
@@ -174,6 +167,50 @@ function Contact({ content }: ContactProps) {
               ></iframe>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Contracts Section */}
+      <div>
+        <h2 className="font-family-label mb-4 text-xl font-bold">
+          {content.contracts.title}
+        </h2>
+        <p className="mb-8 font-thin">{content.contracts.description}</p>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
+          {content.contracts.availableContracts.map((contract, index) => (
+            <div
+              key={index}
+              className="rounded-lg bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-lg"
+            >
+              <h3 className="font-family-label mb-2 text-lg font-bold">
+                {contract.title}
+              </h3>
+              <p className="font-thin text-neutral-600">{contract.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Fees Section */}
+      <div className="mt-16">
+        <h2 className="font-family-label mb-4 text-xl font-bold">
+          {content.fees.title}
+        </h2>
+        {content.fees.description && (
+          <p className="mb-8 font-thin">{content.fees.description}</p>
+        )}
+        <div className="flex flex-col gap-8">
+          {content.fees.items.map((fee, index) => (
+            <div
+              key={index}
+              className="space-y-8 rounded-lg bg-slate-400/10 p-8 shadow-md outline-1 outline-black/10 transition-shadow duration-300 hover:shadow-lg"
+            >
+              <h3 className="font-family-label mb-2 text-lg font-bold">
+                {fee.title}
+              </h3>
+              <p className="font-thin text-neutral-600">{fee.body}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

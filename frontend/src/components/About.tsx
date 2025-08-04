@@ -1,21 +1,20 @@
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect } from "react";
 import type { AboutPageData } from "../types";
 import Label from "./label";
 import {
   PortableText,
-  type PortableTextBlockComponent,
-  type PortableTextComponent,
-  type PortableTextComponentProps,
   type PortableTextMarkComponentProps,
-  type PortableTextProps,
   type PortableTextReactComponents,
 } from "@portabletext/react";
-
-import type {
-  PortableTextBlock,
-  PortableTextSpan,
-  PortableTextLink,
-} from "@portabletext/types";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./accordion";
+import { PortableTextComponents } from "../utils/utils";
+import { RichText } from "./richText";
+import { urlFor } from "../utils/urlFor";
 
 interface AboutProps {
   content: AboutPageData;
@@ -42,46 +41,10 @@ function About({ content }: AboutProps) {
     };
   }, []);
 
-  console.log(content.trainingAndExperience);
-
-  const components: Partial<PortableTextReactComponents> = {
-    marks: {
-      link: ({ value, children }: PortableTextMarkComponentProps) => {
-        const target = value?.href?.startsWith("http") ? "_blank" : undefined;
-        return (
-          <a
-            className="text-blue-900 hover:underline"
-            href={value?.href || "#"}
-            target={target}
-            rel={target === "_blank" ? "noopener noreferrer" : undefined}
-          >
-            {children}
-          </a>
-        );
-      },
-      strong: ({ children }) => (
-        <strong className="font-semibold text-slate-600">{children}</strong>
-      ),
-    },
-    block: {
-      // Ex. 1: customizing common block types
-      // h6: (type) => <h6 className="text-6xl text-red-500">{type.children}</h6>,
-      p: (type) => <p className="text-s text-red-700">{type.children}</p>,
-      b: (type) => <b className="text-slate-500">{type.children}</b>,
-    },
-    list: {
-      bullet: ({ children }) => (
-        <ul className="mt-xl list-inside list-disc space-y-1 marker:text-slate-500">
-          {children}
-        </ul>
-      ),
-    },
-  };
-
   return (
     <section
       id="about"
-      className={`ease-in-ou flex h-screen flex-col bg-slate-200 px-64 py-24 transition-all duration-1000 ${
+      className={`ease-in-ou flex flex-col bg-slate-100 px-64 py-24 transition-all duration-1000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -91,35 +54,78 @@ function About({ content }: AboutProps) {
 
       <div className="mb-16" />
 
-      <div className="mb-16 flex flex-row">
-        <h1 className="font-family-label flex-2 pr-32 text-4xl font-bold">
-          Im Adam Souter.
-          <br />A Gestalt Psychotherapist.
-        </h1>
+      <div className="mb-8 flex flex-col space-y-2">
+        <h1 className="font-family-label text-4xl font-bold">{content.name}</h1>
+        {content.accreditation && (
+          <h1 className="font-family-label text-4xl font-bold">
+            {content.accreditation}
+          </h1>
+        )}
       </div>
 
-      {/* <p className="font-family-body pb-8 text-lg font-thin"> */}
-      <div className="mr-16 rounded-lg bg-white p-8 pb-8 shadow-md">
+      <div className="mb-16 mr-16 rounded-lg bg-white p-8 pb-8 shadow-md">
         {content.trainingAndExperience.map((item, index) => (
           <div className="my-4" key={index}>
-            <PortableText
-              value={item.text}
-              components={components}
-            ></PortableText>
+            <RichText content={item.text} />
           </div>
         ))}
+      </div>
+
+      <div className="flex flex-1 flex-col space-y-8">
+        <p className="font-family-label text-2xl font-bold">
+          {content.supportAreas.title}
+        </p>
+        <p className="font-thin">{content.supportAreas.description}</p>
+      </div>
+
+      <Accordion type="single" collapsible className="space-y-4 py-8">
+        {content.supportAreas.items.map((area, index) => (
+          <AccordionItem
+            key={index}
+            value={`item-${index}`}
+            className="rounded-xl bg-white px-8 py-2 shadow-md transition-all duration-500 ease-in-out"
+          >
+            <AccordionTrigger className="font-family-label font-bold transition-all duration-500 ease-in-out hover:pl-2">
+              {area.title}
+            </AccordionTrigger>
+            <AccordionContent className="font-thin transition-all duration-500 ease-in-out">
+              {area.description}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+
+      <div className="mb-16" />
+
+      <div className="flex flex-col items-center">
+        {content.supportAreas.specificNeedImage && (
+          <img
+            src={urlFor(content.supportAreas.specificNeedImage).url()}
+            alt={content.supportAreas.specificNeedTitle}
+            className="flex w-16 self-center opacity-50 transition-all duration-500 ease-in-out hover:scale-110"
+          />
+        )}
+
+        <div className="space-y-4 px-16 py-8">
+          <p className="font-family-label text-center text-xl font-bold">
+            {content.supportAreas.specificNeedTitle}
+          </p>
+          <p className="text-center font-thin">
+            {content.supportAreas.specificNeedDescription}
+          </p>
+        </div>
+
+        <div className="peer flex justify-center">
+          <a
+            href="#contact"
+            className="rounded-lg bg-slate-500 px-8 py-4 font-bold text-white shadow transition-colors duration-300 hover:bg-slate-600"
+          >
+            {content.supportAreas.contactButtonText}
+          </a>
+        </div>
       </div>
     </section>
   );
 }
 
 export default About;
-
-function Card({ title, body }: { title: string; body: string }) {
-  return (
-    <div className="bg-celadon-light flex h-full flex-col rounded-lg p-6 shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-      <h2 className="font-family-label text-xl font-bold">{title}</h2>
-      <p className="font-family-body mt-2 text-sm font-thin">{body}</p>
-    </div>
-  );
-}

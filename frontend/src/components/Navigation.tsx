@@ -12,21 +12,31 @@ function Navigation({ content }: NavigationProps) {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
 
-    sections.forEach((section) => observer.observe(section));
+    const handleScroll = () => {
+      let currentActiveSection = "home";
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+
+        if (
+          scrollPosition >= sectionTop &&
+          scrollPosition < sectionTop + sectionHeight
+        ) {
+          currentActiveSection = section.id;
+        }
+      });
+
+      setActiveSection(currentActiveSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once to set initial state
 
     return () => {
-      sections.forEach((section) => observer.unobserve(section));
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -48,7 +58,7 @@ function Navigation({ content }: NavigationProps) {
             <img src="src/assets/logo.svg" alt="Logo" className="h-12 w-12" />
           )}
           <div>
-            <h1 className="font-family-body font-black text-slate-500">
+            <h1 className="font-family-body hidden font-black text-slate-500 md:block">
               {content.logoText}
             </h1>
           </div>

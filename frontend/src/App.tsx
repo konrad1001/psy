@@ -87,11 +87,11 @@ function App() {
     <ParallaxProvider>
       <div>
         <Navigation content={data.navigation} />
-        {/* <Home content={data.homePage} /> */}
+        <Home content={data.homePage} />
         <About content={data.aboutPage} />
-        {/* <Services content={data.servicesPage} /> */}
-        {/* <Contact content={data.contactPage} /> */}
-        {/* <Footer content={data.footer} /> */}
+        <Services content={data.servicesPage} />
+        <Contact content={data.contactPage} />
+        <Footer content={data.footer} />
       </div>
     </ParallaxProvider>
   );

@@ -22,10 +22,10 @@ export interface AboutPageData {
   _type: "aboutPage";
   _id: string;
   label: string;
+  name: string;
+  accreditation?: string;
   trainingAndExperience: ExperienceItem[];
-  shortBio: string;
-  longBio: string;
-  cards?: AboutPageCard[];
+  supportAreas: AboutAreasOfSupport;
 }
 
 export interface ServicesPageData {
@@ -33,7 +33,19 @@ export interface ServicesPageData {
   _id: string;
   label: string;
   heading: string;
-  services: ServiceItem[];
+  body: PortableTextBlock[];
+  figures?: SanityImage[];
+  secondaryBody: PortableTextBlock[];
+}
+
+export interface AboutAreasOfSupport {
+  title: string;
+  description: string;
+  items: ServiceItem[];
+  specificNeedImage?: SanityImage;
+  specificNeedTitle: string;
+  specificNeedDescription: string;
+  contactButtonText: string;
 }
 
 export interface ServiceItem {
@@ -50,6 +62,8 @@ export interface ContactPageData {
   contactFormTitle: string;
   details: ContactDetails;
   location: ContactLocation;
+  contracts: ContactAvailableContract;
+  fees: ContactFees;
 }
 
 export interface ContactDetails {
@@ -64,11 +78,23 @@ export interface ContactLocation {
   mapEmbedUrl: string;
 }
 
+export interface ContactAvailableContract {
+  title: string;
+  description: string;
+  availableContracts: Card[];
+}
+
+export interface ContactFees {
+  title: string;
+  description?: string;
+  items: Card[];
+}
+
 export interface ExperienceItem {
   text: PortableTextBlock[];
 }
 
-export interface AboutPageCard {
+export interface Card {
   title: string;
   body: string;
 }
