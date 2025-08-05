@@ -1,8 +1,6 @@
-import { PortableText } from "@portabletext/react";
 import type { ServicesPageData } from "../types";
 import { urlFor } from "../utils/urlFor";
 import Label from "./label";
-import { PortableTextComponents } from "../utils/utils";
 import { RichText } from "./richText";
 
 interface ServicesProps {

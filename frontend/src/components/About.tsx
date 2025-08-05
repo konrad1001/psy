@@ -2,17 +2,11 @@ import { useState, useEffect } from "react";
 import type { AboutPageData } from "../types";
 import Label from "./label";
 import {
-  PortableText,
-  type PortableTextMarkComponentProps,
-  type PortableTextReactComponents,
-} from "@portabletext/react";
-import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./accordion";
-import { PortableTextComponents } from "../utils/utils";
 import { RichText } from "./richText";
 import { urlFor } from "../utils/urlFor";
 
@@ -27,7 +21,7 @@ function About({ content }: AboutProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // setIsVisible(entry.isIntersecting);
+          setIsVisible(entry.isIntersecting);
         });
       },
       { threshold: 0.3 },
@@ -44,8 +38,8 @@ function About({ content }: AboutProps) {
   return (
     <section
       id="about"
-      className={`ease-in-ou flex flex-col bg-slate-100 px-64 py-24 transition-all duration-1000 ${
-        isVisible ? "opacity-100" : "opacity-0"
+      className={`ease-in-ou flex flex-col bg-slate-100 px-64 py-24 transition-all duration-0 ${
+        isVisible ? "opacity-100" : "opacity-100"
       }`}
     >
       <div className="flex">
