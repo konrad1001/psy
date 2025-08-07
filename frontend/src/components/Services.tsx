@@ -1,4 +1,3 @@
-import { MouseParallaxChild } from "react-parallax-mouse";
 import type { ServicesPageData } from "../types";
 import { urlFor } from "../utils/urlFor";
 import Label from "./label";
