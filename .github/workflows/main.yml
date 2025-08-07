@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Studio
         run: |
-          cd frontend
+          cd backend
           npm run build
 
       - name: Deploy Studio
