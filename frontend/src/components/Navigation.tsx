@@ -66,22 +66,22 @@ function Navigation({ content }: NavigationProps) {
 
         <div className="hidden lg:flex">
           <NavBarButton
-            label="Home"
+            label={content.tabNames[0] || "Home"}
             href="#home"
             isActive={activeSection === "home"}
           />
           <NavBarButton
-            label="About"
+            label={content.tabNames[1] || "About"}
             href="#about"
             isActive={activeSection === "about"}
           />
           <NavBarButton
-            label="Services"
+            label={content.tabNames[2] || "Services"}
             href="#services"
             isActive={activeSection === "services"}
           />
           <NavBarButton
-            label="Contact"
+            label={content.tabNames[3] || "Contact"}
             href="#contact"
             isActive={activeSection === "contact"}
           />

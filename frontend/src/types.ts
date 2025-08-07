@@ -4,6 +4,7 @@ import type { PortableTextBlock } from "@portabletext/react";
 export interface NavigationData {
   logoImage?: SanityImage;
   logoText: string;
+  tabNames: string[];
 }
 
 export interface HomePageData {

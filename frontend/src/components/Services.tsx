@@ -1,3 +1,4 @@
+import { MouseParallaxChild } from "react-parallax-mouse";
 import type { ServicesPageData } from "../types";
 import { urlFor } from "../utils/urlFor";
 import Label from "./label";
@@ -23,15 +24,20 @@ function Services({ content }: ServicesProps) {
 
       <RichText content={content.body} />
 
-      <div className="flex flex-row justify-center space-x-8 py-8">
+      <div className="mx-8 grid justify-center gap-8 py-8 sm:grid-cols-2 md:grid-cols-4">
         {content.figures &&
           content.figures.map((figure, index) => (
-            <img
+            <div
               key={index}
-              src={urlFor(figure).url()}
-              alt={`Service Figure ${index + 1}`}
-              className="rounded-lg object-cover"
-            />
+              className="transition-all duration-300 hover:scale-110"
+            >
+              <img
+                key={index}
+                src={urlFor(figure).url()}
+                alt={`Service Figure ${index + 1}`}
+                className="h-auto w-full rounded-lg object-fill"
+              />
+            </div>
           ))}
       </div>
 

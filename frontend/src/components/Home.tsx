@@ -11,7 +11,7 @@ function Home({ content }: HomeProps) {
     <section id="home" className="flex flex-col">
       <div className="">
         <div className="flex flex-col items-center bg-slate-200 px-16 py-24 sm:px-16 md:flex-row md:px-24 lg:px-52 xl:px-64">
-          <div className="flex-4 mb-16 flex flex-col space-y-8 md:mb-0">
+          <div className="flex-4 mb-16 flex flex-col space-y-8 pr-8 md:mb-0">
             <h3 className="font-family-label text-xl font-medium">
               {content.title.toUpperCase()}
             </h3>
@@ -25,7 +25,6 @@ function Home({ content }: HomeProps) {
           <div className="flex flex-1"></div>
 
           {/* Image */}
-
           <img
             src={urlFor(content.photo).url()}
             alt="Adam Souter, Gestalt Psychotherapist"
@@ -55,7 +54,7 @@ function Home({ content }: HomeProps) {
 
       {/* Room Section */}
       <Parallax speed={0}>
-        <div className="flex flex-row items-center space-x-32 space-y-8 px-16 py-32 sm:px-16 md:px-32 lg:px-64">
+        <div className="flex flex-col items-center space-x-32 space-y-8 px-16 py-32 sm:px-16 md:px-32 lg:flex-row lg:px-52 xl:px-64">
           <div className="flex flex-1 flex-col space-y-8">
             <p className="font-family-label text-2xl font-bold">
               {content.officeSection.title}
@@ -69,10 +68,10 @@ function Home({ content }: HomeProps) {
 
           {/* Room Image */}
 
-          <div className="flex h-80 flex-1 justify-center overflow-hidden rounded-2xl shadow-lg">
+          <div className="flex h-80 flex-1 justify-center overflow-hidden rounded-2xl shadow-lg aspect-[4/3] mx-8 md:mx-16 lg:mx-0">
             <img
               src={urlFor(content.officeSection.images[0]).url()}
-              alt="Adam Souter, Gestalt Psychotherapist"
+              alt="My Office"
               className="w-full rounded-2xl object-cover shadow-lg"
             />
           </div>

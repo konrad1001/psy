@@ -15,6 +15,7 @@ import Contact from "./components/Contact";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { ParallaxProvider } from "react-scroll-parallax";
+import { MouseParallaxContainer } from "react-parallax-mouse";
 
 interface AppData {
   navigation: NavigationData | null;
@@ -85,14 +86,14 @@ function App() {
 
   return (
     <ParallaxProvider>
-      <div>
-        <Navigation content={data.navigation} />
-        <Home content={data.homePage} />
-        <About content={data.aboutPage} />
-        <Services content={data.servicesPage} />
-        <Contact content={data.contactPage} />
-        <Footer content={data.footer} />
-      </div>
+        <div>
+          <Navigation content={data.navigation} />
+          <Home content={data.homePage} />
+          <About content={data.aboutPage} />
+          <Services content={data.servicesPage} />
+          <Contact content={data.contactPage} />
+          <Footer content={data.footer} />
+        </div>
     </ParallaxProvider>
   );
 }

@@ -38,7 +38,7 @@ function About({ content }: AboutProps) {
   return (
     <section
       id="about"
-      className={`ease-in-ou flex flex-col bg-slate-100 px-64 py-24 transition-all duration-0 ${
+      className={`flex flex-col bg-slate-100 px-16 py-24 transition-all duration-0 ease-in-out sm:px-16 md:px-24 lg:px-52 xl:px-64 ${
         isVisible ? "opacity-100" : "opacity-100"
       }`}
     >
@@ -57,7 +57,7 @@ function About({ content }: AboutProps) {
         )}
       </div>
 
-      <div className="mb-16 mr-16 rounded-lg bg-white p-8 pb-8 shadow-md">
+      <div className="mb-16 rounded-lg bg-white p-8 pb-8 shadow-md">
         <RichText content={content.trainingAndExperience} />
       </div>
 
