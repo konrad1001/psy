@@ -58,11 +58,7 @@ function About({ content }: AboutProps) {
       </div>
 
       <div className="mb-16 mr-16 rounded-lg bg-white p-8 pb-8 shadow-md">
-        {content.trainingAndExperience.map((item, index) => (
-          <div className="my-4" key={index}>
-            <RichText content={item.text} />
-          </div>
-        ))}
+        <RichText content={content.trainingAndExperience} />
       </div>
 
       <div className="flex flex-1 flex-col space-y-8">

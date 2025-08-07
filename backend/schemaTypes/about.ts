@@ -29,14 +29,7 @@ export default {
       description: "Details about the therapist's training and experience.",
       of: [
         {
-          type: 'object',
-          fields: [
-            {
-              name: 'text',
-              type: 'array',
-              of: [{type: 'block'}],
-            },
-          ],
+          type: 'block',
         },
       ],
     },

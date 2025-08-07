@@ -15,7 +15,14 @@ export interface HomePageData {
   practiceTitle: string;
   practiceText: string;
   splashImage: SanityImage;
-  roomImage: SanityImage;
+  officeSection: HomeOfficeSection;
+}
+
+export interface HomeOfficeSection {
+  title: string;
+  descriptionTop: string;
+  descriptionBottom: string;
+  images: SanityImage[];
 }
 
 export interface AboutPageData {
@@ -24,7 +31,7 @@ export interface AboutPageData {
   label: string;
   name: string;
   accreditation?: string;
-  trainingAndExperience: ExperienceItem[];
+  trainingAndExperience: PortableTextBlock[];
   supportAreas: AboutAreasOfSupport;
 }
 

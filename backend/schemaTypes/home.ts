@@ -55,6 +55,38 @@ export default {
         hotspot: true,
       },
     },
-    {name: 'roomImage', title: 'Room Image', type: 'image', options: {hotspot: true}},
+    {
+      name: 'officeSection',
+      title: 'Office Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'images',
+          title: 'Office Images',
+          type: 'array',
+          of: [
+            {
+              type: 'image',
+              options: {hotspot: true},
+            },
+          ],
+        },
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        },
+        {
+          name: 'descriptionTop',
+          title: 'Description (Top)',
+          type: 'text',
+        },
+        {
+          name: 'descriptionBottom',
+          title: 'Description (Bottom)',
+          type: 'text',
+        },
+      ],
+    },
   ],
 }
