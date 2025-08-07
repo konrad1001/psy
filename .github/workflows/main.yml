@@ -34,4 +34,4 @@ jobs:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
           cd backend
-          npx sanity deploy --auth-token $SANITY_AUTH_TOKEN
+          npx sanity deploy --auth-token $SANITY_AUTH_TOKEN --studio-host ealing.psychotherapy --debug
