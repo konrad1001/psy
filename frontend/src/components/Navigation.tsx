@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { NavigationData } from "../types";
 import { urlFor } from "../utils/urlFor";
+import { useLocation } from "react-router-dom";
 
 interface NavigationProps {
   content: NavigationData;
@@ -8,57 +9,55 @@ interface NavigationProps {
 
 function Navigation({ content }: NavigationProps) {
   const [navPanelOpen, setNavPanelOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("home");
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const toggleNavPanel = () => {
+    setNavPanelOpen(!navPanelOpen);
+  };
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
-
     const handleScroll = () => {
-      let currentActiveSection = "home";
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const scrollPosition = window.scrollY;
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+      setHasScrolled(scrollPosition > 200);
 
-        if (
-          scrollPosition >= sectionTop &&
-          scrollPosition < sectionTop + sectionHeight
-        ) {
-          currentActiveSection = section.id;
-        }
-      });
-
-      setActiveSection(currentActiveSection);
+      console.log(hasScrolled);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Call once to set initial state
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const toggleNavPanel = () => {
-    setNavPanelOpen(!navPanelOpen);
-  };
-
   return (
-    <div className="shadow-xs sticky top-0 z-50 w-full flex-col bg-white">
-      <div className="flex items-center justify-between bg-white px-16 py-4 text-black sm:px-16 md:px-32 lg:px-52 xl:px-64">
+    <div
+      className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-white/100 text-black shadow-md" : "bg-transparent text-white"} transition-all duration-500`}
+    >
+      <div className="flex items-center justify-between px-16 py-4 sm:px-16 md:px-32 lg:px-52 xl:px-32">
         <div className="flex flex-row items-center space-x-2">
-          {content.logoImage != null ? (
+          <div className="relative h-12 w-12">
             <img
-              src={urlFor(content.logoImage).url()}
+              src="src/assets/logo_white.svg"
               alt="Logo"
-              className="h-12 w-12"
+              className={`absolute inset-0 h-12 w-12 transition-opacity duration-500 ${
+                hasScrolled ? "opacity-0" : "opacity-100"
+              }`}
             />
-          ) : (
-            <img src="src/assets/logo.svg" alt="Logo" className="h-12 w-12" />
-          )}
+            <img
+              src="src/assets/logo_black.svg"
+              alt="Logo"
+              className={`absolute inset-0 h-12 w-12 transition-opacity duration-500 ${
+                hasScrolled ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </div>
+
           <div>
-            <h1 className="font-family-body hidden font-black text-slate-500 md:block">
+            <h1 className="font-family-inter hidden font-black md:block">
               {content.logoText}
             </h1>
           </div>
@@ -67,23 +66,23 @@ function Navigation({ content }: NavigationProps) {
         <div className="hidden lg:flex">
           <NavBarButton
             label={content.tabNames[0] || "Home"}
-            href="#home"
-            isActive={activeSection === "home"}
+            href="/"
+            isActive={currentPath === "/home"}
           />
           <NavBarButton
             label={content.tabNames[1] || "About"}
-            href="#about"
-            isActive={activeSection === "about"}
+            href="/about"
+            isActive={currentPath === "/about"}
           />
           <NavBarButton
             label={content.tabNames[2] || "Services"}
-            href="#services"
-            isActive={activeSection === "services"}
+            href="/services"
+            isActive={currentPath === "/services"}
           />
           <NavBarButton
             label={content.tabNames[3] || "Contact"}
-            href="#contact"
-            isActive={activeSection === "contact"}
+            href="/contact"
+            isActive={currentPath === "/contact"}
           />
         </div>
 
@@ -118,23 +117,23 @@ function Navigation({ content }: NavigationProps) {
             <div className="flex flex-col items-center justify-center space-y-4 p-8">
               <NavBarButton
                 label="Home"
-                href="#home"
-                isActive={activeSection === "home"}
+                href="/"
+                isActive={currentPath === "/home"}
               />
               <NavBarButton
                 label="About"
-                href="#about"
-                isActive={activeSection === "about"}
+                href="/about"
+                isActive={currentPath === "/about"}
               />
               <NavBarButton
                 label="Services"
-                href="#services"
-                isActive={activeSection === "services"}
+                href="/services"
+                isActive={currentPath === "/services"}
               />
               <NavBarButton
                 label="Contact"
-                href="#contact"
-                isActive={activeSection === "contact"}
+                href="/contact"
+                isActive={currentPath === "/contact"}
               />
             </div>
           </div>
@@ -158,7 +157,7 @@ function NavBarButton({
   return (
     <a
       href={href}
-      className={`mx-2 px-2 py-2 text-black transition-all duration-300 xl:px-4 ${
+      className={`font-family-inter mx-2 px-2 py-2 text-sm transition-all duration-300 xl:px-4 ${
         isActive ? "font-bold text-slate-500" : "hover:text-slate-500"
       }`}
     >

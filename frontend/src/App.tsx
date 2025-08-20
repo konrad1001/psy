@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { sanity } from "../client";
 import type {
   AboutPageData,
@@ -84,16 +85,31 @@ function App() {
     return <div></div>;
 
   return (
-    <ParallaxProvider>
-      <div>
-        <Navigation content={data.navigation} />
-        <Home content={data.homePage} />
-        <About content={data.aboutPage} />
-        <Services content={data.servicesPage} />
-        <Contact content={data.contactPage} />
-        <Footer content={data.footer} />
-      </div>
-    </ParallaxProvider>
+    <Router>
+      <ParallaxProvider>
+        <div className="relative min-h-screen">
+          <Navigation content={data.navigation} />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Home content={data.homePage} />} />
+              <Route
+                path="/about"
+                element={<About content={data.aboutPage} />}
+              />
+              <Route
+                path="/services"
+                element={<Services content={data.servicesPage} />}
+              />
+              <Route
+                path="/contact"
+                element={<Contact content={data.contactPage} />}
+              />
+            </Routes>
+          </main>
+          {/* <Footer content={data.footer} /> */}
+        </div>
+      </ParallaxProvider>
+    </Router>
   );
 }
 
