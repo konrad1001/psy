@@ -44,6 +44,7 @@ export interface ServicesPageData {
   body: PortableTextBlock[];
   figures?: SanityImage[];
   secondaryBody: PortableTextBlock[];
+  contracts: ContactAvailableContract;
 }
 
 export interface AboutAreasOfSupport {
@@ -70,7 +71,6 @@ export interface ContactPageData {
   contactFormTitle: string;
   details: ContactDetails;
   location: ContactLocation;
-  contracts: ContactAvailableContract;
   fees: ContactFees;
 }
 

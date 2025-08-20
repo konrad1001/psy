@@ -2,6 +2,7 @@ import { Parallax, ParallaxBanner } from "react-scroll-parallax";
 import type { HomePageData } from "../types";
 import { urlFor } from "../utils/urlFor";
 import RoundedButton from "./roundedButton";
+import ImageCarousel from "./carousel";
 
 interface HomeProps {
   content: HomePageData;
@@ -12,7 +13,7 @@ function Home({ content }: HomeProps) {
     <section id="home" className="flex flex-col">
       {/* Green */}
 
-      <div className="bg-primary flex h-screen flex-col items-center justify-center px-32 text-white">
+      <div className="bg-primary flex min-h-screen flex-col items-center justify-center px-16 text-white lg:px-32">
         <div
           className="pointer-events-none absolute inset-0 h-full opacity-50"
           style={{
@@ -20,19 +21,19 @@ function Home({ content }: HomeProps) {
           }}
         />
         <Parallax speed={-15}>
-          <div className="flex-col">
-            <div className="z-10 flex flex-row justify-between space-y-4">
-              <div className="flex-1 flex-col space-y-4">
-                <h1 className="font-family-inria-sans text-6xl font-bold">
+          <div className="my-32 flex-col">
+            <div className="z-10 flex flex-col justify-between space-y-4 md:flex-row">
+              <div className="flex-1 flex-col space-y-4 md:pr-16 lg:pr-64">
+                <h1 className="font-family-inria-sans text-4xl font-bold md:text-6xl">
                   {content.therapistName}
                 </h1>
-                <h2 className="font-family-instrument-sans text-4xl font-semibold">
+                <h2 className="font-family-instrument-sans text-2xl font-semibold md:text-4xl">
                   {content.title}
                 </h2>
-                <p className="font-family-instrument-sans pb-4 text-2xl font-thin opacity-70">
+                <p className="font-family-instrument-sans text-md pb-4 font-thin opacity-70 md:text-2xl">
                   {content.pronouns}
                 </p>
-                <p className="font-family-instrument-sans pr-64 text-sm font-thin">
+                <p className="font-family-instrument-sans pb-8 pr-8 text-sm font-thin">
                   {content.introText}
                 </p>
               </div>
@@ -41,7 +42,7 @@ function Home({ content }: HomeProps) {
               <img
                 src={urlFor(content.photo).url()}
                 alt="Adam Souter, Gestalt Psychotherapist"
-                className="relative h-80 w-80 rounded-2xl object-cover shadow-lg"
+                className="relative mx-auto aspect-square h-80 w-80 rounded-2xl object-cover shadow-lg"
               />
               {/* </div> */}
             </div>
@@ -50,16 +51,16 @@ function Home({ content }: HomeProps) {
       </div>
       <div>
         <ParallaxBanner
-          layers={[{ image: urlFor(content.splashImage).url(), speed: -10 }]}
-          className="h-screen"
+          layers={[{ image: urlFor(content.splashImage).url(), speed: -15 }]}
+          className="min-h-screen"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="mx-32 flex-col space-y-8 rounded-2xl bg-black/40 p-16 text-white">
+            <div className="mx-16 flex-col space-y-2 rounded-2xl bg-black/40 p-10 text-white md:space-y-8 md:p-16 lg:mx-32">
               <p className="font-family-inria-sans text-2xl font-bold">
                 My Approach
               </p>
-              <p className="font-family-instrument-sans pb-12 pr-64 text-sm font-thin">
+              <p className="font-family-instrument-sans pb-12 text-sm font-thin lg:pr-48 xl:pr-64">
                 {content.practiceText}
               </p>
               <RoundedButton
@@ -75,8 +76,8 @@ function Home({ content }: HomeProps) {
       {/* White */}
       <div>
         <Parallax speed={0}>
-          <div className="flex min-h-screen flex-col items-center space-x-32 space-y-8 bg-slate-100 px-32 lg:flex-row">
-            <div className="flex flex-1 flex-col space-y-8">
+          <div className="flex min-h-screen flex-col items-center space-y-8 bg-slate-200 px-16 py-32 lg:flex-row lg:px-32">
+            <div className="flex flex-1 flex-col space-y-8 md:mr-16">
               <p className="font-family-inria-sans text-2xl font-bold">
                 {content.officeSection.title}
               </p>
@@ -95,11 +96,15 @@ function Home({ content }: HomeProps) {
               />
             </div>
 
-            <div className="mx-8 flex aspect-[4/3] h-80 flex-1 justify-center overflow-hidden rounded-2xl shadow-lg md:mx-16 lg:mx-0">
-              <img
-                src={urlFor(content.officeSection.images[0]).url()}
-                alt="My Office"
-                className="w-full rounded-2xl object-cover shadow-lg"
+            <div className="mx-8 flex-1 overflow-clip rounded-2xl md:mx-16 lg:mx-0">
+              <ImageCarousel
+                images={content.officeSection.images}
+                className="object-fill"
+                showArrows={true}
+                showDots={true}
+                autoPlay={true}
+                autoPlayInterval={4000}
+                altTextPrefix="My Office"
               />
             </div>
           </div>
@@ -108,5 +113,7 @@ function Home({ content }: HomeProps) {
     </section>
   );
 }
+
+//flex aspect-[4/3] h-80
 
 export default Home;

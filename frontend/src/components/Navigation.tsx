@@ -8,10 +8,16 @@ interface NavigationProps {
 }
 
 function Navigation({ content }: NavigationProps) {
-  const [navPanelOpen, setNavPanelOpen] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
   const location = useLocation();
   const currentPath = location.pathname;
+
+  console.log("Current Path:", currentPath);
+  console.log(currentPath in ["/", "/home", "/about", "/contact"]);
+
+  const [navPanelOpen, setNavPanelOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(
+    !["/", "/home", "/about", "/contact"].includes(currentPath),
+  );
 
   const toggleNavPanel = () => {
     setNavPanelOpen(!navPanelOpen);
@@ -21,9 +27,11 @@ function Navigation({ content }: NavigationProps) {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
 
-      setHasScrolled(scrollPosition > 200);
-
-      console.log(hasScrolled);
+      if (["/", "/home", "/about", "/contact"].includes(currentPath)) {
+        setHasScrolled(scrollPosition > 100);
+      } else {
+        setHasScrolled(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -37,7 +45,7 @@ function Navigation({ content }: NavigationProps) {
     <div
       className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-white/100 text-black shadow-md" : "bg-transparent text-white"} transition-all duration-500`}
     >
-      <div className="flex items-center justify-between px-16 py-4 sm:px-16 md:px-32 lg:px-52 xl:px-32">
+      <div className="flex items-center justify-between px-16 py-4 lg:px-32">
         <div className="flex flex-row items-center space-x-2">
           <div className="relative h-12 w-12">
             <img
@@ -67,7 +75,7 @@ function Navigation({ content }: NavigationProps) {
           <NavBarButton
             label={content.tabNames[0] || "Home"}
             href="/"
-            isActive={currentPath === "/home"}
+            isActive={currentPath === "/" || currentPath === "/home"}
           />
           <NavBarButton
             label={content.tabNames[1] || "About"}
@@ -91,17 +99,17 @@ function Navigation({ content }: NavigationProps) {
             <button onClick={toggleNavPanel}>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div
-                  className={`h-1 w-6 rounded-full bg-slate-500 transition-transform duration-300 ${
+                  className={`h-1 w-6 rounded-full ${hasScrolled ? "bg-black" : "bg-white"} transition-transform duration-300 ${
                     navPanelOpen ? "translate-y-2 rotate-45" : ""
                   }`}
                 ></div>
                 <div
-                  className={`h-1 w-6 rounded-full bg-slate-500 transition-opacity duration-300 ${
+                  className={`h-1 w-6 rounded-full ${hasScrolled ? "bg-black" : "bg-white"} transition-opacity duration-300 ${
                     navPanelOpen ? "opacity-0" : ""
                   }`}
                 ></div>
                 <div
-                  className={`h-1 w-6 rounded-full bg-slate-500 transition-transform duration-300 ${
+                  className={`h-1 w-6 rounded-full ${hasScrolled ? "bg-black" : "bg-white"} transition-transform duration-300 ${
                     navPanelOpen ? "-translate-y-2 -rotate-45" : ""
                   }`}
                 ></div>
@@ -158,7 +166,9 @@ function NavBarButton({
     <a
       href={href}
       className={`font-family-inter mx-2 px-2 py-2 text-sm transition-all duration-300 xl:px-4 ${
-        isActive ? "font-bold text-slate-500" : "hover:text-slate-500"
+        isActive
+          ? "font-bold"
+          : "decoration-primary hover:text-black/40 hover:underline hover:decoration-black/20 hover:decoration-2 hover:underline-offset-8"
       }`}
     >
       {label}

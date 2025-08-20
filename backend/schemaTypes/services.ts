@@ -40,5 +40,46 @@ export default {
       type: 'array',
       of: [{type: 'block'}],
     },
+    {
+      name: 'contracts',
+      title: 'Available Contracts',
+      type: 'object',
+      description: 'Availabe contracts',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+        {
+          name: 'availableContracts',
+          title: 'List of contracts',
+          description: 'List of contracts',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Contract Title',
+                  type: 'string',
+                },
+                {
+                  name: 'body',
+                  title: 'Contract Description',
+                  type: 'text',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
 }

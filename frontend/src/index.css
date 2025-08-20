@@ -10,11 +10,8 @@
 
   --font-family-label--font-weight: 300;
 
-  --color-celadon: #ace1af;
-  --color-celadon-light: #dde9d8;
-  --color-celadon-dark: #638475;
-
   --color-primary: #3a6d46;
+  --color-primary-dark: #32683f;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
