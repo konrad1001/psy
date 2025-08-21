@@ -1,19 +1,24 @@
 import { Parallax, ParallaxBanner } from "react-scroll-parallax";
-import type { HomePageData } from "../types";
+import type { GlobalConfig, HomePageData } from "../types";
 import { urlFor } from "../utils/urlFor";
 import RoundedButton from "./roundedButton";
 import ImageCarousel from "./carousel";
 
 interface HomeProps {
+  config: GlobalConfig;
   content: HomePageData;
 }
 
-function Home({ content }: HomeProps) {
+function Home({ content, config }: HomeProps) {
+  console.log(config);
   return (
     <section id="home" className="flex flex-col">
       {/* Green */}
 
-      <div className="bg-primary flex min-h-screen flex-col items-center justify-center px-16 text-white lg:px-32">
+      <div
+        style={{ backgroundColor: config.primary.hex }}
+        className={`flex min-h-screen flex-col items-center justify-center px-8 text-black sm:px-16 lg:px-32`}
+      >
         <div
           className="pointer-events-none absolute inset-0 h-full opacity-50"
           style={{
@@ -33,18 +38,16 @@ function Home({ content }: HomeProps) {
                 <p className="font-family-instrument-sans text-md pb-4 font-thin opacity-70 md:text-2xl">
                   {content.pronouns}
                 </p>
-                <p className="font-family-instrument-sans pb-8 pr-8 text-sm font-thin">
+                <p className="font-family-instrument-sans pb-8 pr-8 font-thin">
                   {content.introText}
                 </p>
               </div>
 
-              {/* <div className="flex rounded-2xl bg-gray-900/20 pb-8 pl-8 pr-4 pt-4 shadow-lg"> */}
               <img
                 src={urlFor(content.photo).url()}
                 alt="Adam Souter, Gestalt Psychotherapist"
                 className="relative mx-auto aspect-square h-80 w-80 rounded-2xl object-cover shadow-lg"
               />
-              {/* </div> */}
             </div>
           </div>
         </Parallax>
@@ -56,16 +59,17 @@ function Home({ content }: HomeProps) {
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="mx-16 flex-col space-y-2 rounded-2xl bg-black/40 p-10 text-white backdrop-blur-[2px] backdrop-brightness-90 md:space-y-8 md:p-16 lg:mx-32">
+            <div className="mx-8 flex-col space-y-2 rounded-2xl bg-black/40 p-10 text-white backdrop-blur-[2px] backdrop-brightness-90 sm:mx-16 md:space-y-8 md:p-16 lg:mx-32">
               <p className="font-family-inria-sans text-2xl font-bold">
                 {content.approachTitle}
               </p>
-              <p className="font-family-instrument-sans pb-12 text-sm font-thin lg:pr-48 xl:pr-64">
+              <p className="font-family-instrument-sans pb-12 font-thin lg:pr-48 xl:pr-64">
                 {content.approachText}
               </p>
               <RoundedButton
                 text={content.learnMoreButtonText}
-                className="bg-primary hover:bg-primary-dark"
+                bgColor={config.primary.hex}
+                hoverColor={config.primary.hex}
                 destination="/services"
               />
             </div>
@@ -76,16 +80,16 @@ function Home({ content }: HomeProps) {
       {/* White */}
       <div>
         <Parallax speed={0}>
-          <div className="flex min-h-screen flex-col items-center space-y-8 bg-slate-200 px-16 py-32 lg:flex-row lg:px-32">
+          <div className="flex min-h-screen flex-col items-center space-y-8 bg-slate-200 px-8 py-32 sm:px-16 lg:flex-row lg:px-32">
             <div className="flex flex-1 flex-col space-y-8 md:mr-16">
               <p className="font-family-inria-sans text-2xl font-bold">
                 {content.officeSection.title}
               </p>
-              <p className="font-family-instrument-sans text-sm font-thin">
+              <p className="font-family-instrument-sans font-thin">
                 {content.officeSection.descriptionTop}
               </p>
 
-              <p className="font-family-instrument-sans text-sm font-thin">
+              <p className="font-family-instrument-sans font-thin">
                 {content.officeSection.descriptionBottom}
               </p>
 

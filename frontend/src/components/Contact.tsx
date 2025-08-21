@@ -1,12 +1,14 @@
 import { useState } from "react";
-import type { ContactPageData } from "../types";
+import type { ContactPageData, GlobalConfig } from "../types";
 import { RichText } from "./richText";
 
 interface ContactProps {
+  config: GlobalConfig;
+
   content: ContactPageData;
 }
 
-function Contact({ content }: ContactProps) {
+function Contact({ content, config }: ContactProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -44,7 +46,10 @@ function Contact({ content }: ContactProps) {
 
   return (
     <section className="flex flex-col" id="contact">
-      <div className="bg-primary font-family-instrument-sans flex flex-col px-16 py-24 text-white transition-all duration-0 ease-in-out lg:px-32">
+      <div
+        style={{ backgroundColor: config.primary.hex }}
+        className="font-family-instrument-sans flex flex-col px-8 py-24 text-white transition-all duration-0 ease-in-out sm:px-16 lg:px-32"
+      >
         <div
           className="pointer-events-none absolute inset-0 h-full opacity-50"
           style={{
@@ -56,7 +61,7 @@ function Contact({ content }: ContactProps) {
           {content.title}
         </h1>
 
-        <p className="mb-16 text-sm font-thin">
+        <p className="mb-16 font-thin">
           <RichText content={content.description} />
         </p>
 
@@ -79,7 +84,7 @@ function Contact({ content }: ContactProps) {
                   <h3 className="font-family-label mb-2 text-lg font-bold">
                     {fee.title}
                   </h3>
-                  <p className="text-sm font-thin opacity-70">{fee.body}</p>
+                  <p className="font-thin opacity-70">{fee.body}</p>
                 </div>
               ))}
             </div>
@@ -88,7 +93,7 @@ function Contact({ content }: ContactProps) {
             </h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label className="font-family-label mb-2 block text-sm">
+                <label className="font-family-label mb-2 block">
                   Your Name
                 </label>
                 <input
@@ -97,37 +102,33 @@ function Contact({ content }: ContactProps) {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Enter your full name"
-                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2 text-sm"
+                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
                 />
               </div>
               <div>
-                <label className="font-family-label mb-2 block text-sm">
-                  Email
-                </label>
+                <label className="font-family-label mb-2 block">Email</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter your email address"
-                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2 text-sm"
+                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
                 />
               </div>
               <div>
-                <label className="font-family-label mb-2 block text-sm">
-                  Subject
-                </label>
+                <label className="font-family-label mb-2 block">Subject</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="What would you like to discuss?"
-                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2 text-sm"
+                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
                 />
               </div>
               <div>
-                <label className="font-family-label mb-2 block text-sm">
+                <label className="font-family-label mb-2 block">
                   Your Message
                 </label>
                 <textarea
@@ -135,14 +136,14 @@ function Contact({ content }: ContactProps) {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me a bit about what you're looking for..."
-                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2 text-sm"
+                  className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
                   rows={4}
                 ></textarea>
               </div>
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className={`font-family-label rounded-full border px-6 py-2 text-sm transition-all duration-500 ease-in-out ${
+                  className={`font-family-label rounded-full border px-6 py-2 transition-all duration-500 ease-in-out ${
                     isSubmitted
                       ? "bg-celadon"
                       : "border-neutral-500 hover:bg-slate-400 hover:px-8"

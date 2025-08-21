@@ -58,15 +58,13 @@ function Navigation({ content }: NavigationProps) {
 
   return (
     <div
-      className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-slate-50 text-black shadow-md" : "bg-transparent text-white"} transition-all duration-500`}
+      className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-slate-50 text-black shadow-md" : "bg-transparent text-black"} transition-all duration-500`}
     >
-      <div className="flex items-center justify-between px-16 py-4 lg:px-32">
+      <div className="flex items-center justify-between px-8 py-4 sm:px-16 lg:px-32">
         <div className="flex flex-row items-center space-x-2">
           <div className="relative h-12 w-12">
             <LogoIcon
-              className={`absolute inset-0 h-12 w-12 transition-all duration-500 ${
-                hasScrolled ? "fill-black" : "fill-white"
-              }`}
+              className={`absolute inset-0 h-12 w-12 transition-all duration-500`}
             />
           </div>
 

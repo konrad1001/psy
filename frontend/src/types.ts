@@ -1,6 +1,13 @@
 import type { PortableTextBlock } from "@portabletext/react";
 
-// types.ts
+export interface GlobalConfig {
+  primary: ColourData;
+  primaryDark: ColourData;
+  secondary: ColourData;
+  accent1: ColourData;
+  accent2: ColourData;
+}
+
 export interface NavigationData {
   logoImage?: SanityImage;
   logoText: string;
@@ -115,4 +122,8 @@ export interface SanityImage {
 
 export interface FooterData {
   footerText: string;
+}
+
+export class ColourData {
+  hex?: string = "#000000";
 }

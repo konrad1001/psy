@@ -1,4 +1,4 @@
-import type { AboutPageData } from "../types";
+import type { AboutPageData, GlobalConfig } from "../types";
 import {
   Accordion,
   AccordionContent,
@@ -10,13 +10,17 @@ import RoundedButton from "./roundedButton";
 import HeartIcon from "./icons/heart";
 
 interface AboutProps {
+  config: GlobalConfig;
   content: AboutPageData;
 }
 
-function About({ content }: AboutProps) {
+function About({ content, config }: AboutProps) {
   return (
     <section id="about" className={`flex flex-col`}>
-      <div className="font-family-instrument-sans bg-primary px-16 py-24 text-white lg:px-32">
+      <div
+        style={{ backgroundColor: config.primary.hex }}
+        className="font-family-instrument-sans px-8 py-24 text-white sm:px-16 lg:px-32"
+      >
         <div
           className="pointer-events-none absolute inset-0 h-full opacity-50"
           style={{
@@ -30,7 +34,7 @@ function About({ content }: AboutProps) {
           )}
         </div>
 
-        <div className="font-family-instrument-sans mb-16 rounded-lg bg-slate-400/10 p-8 pb-8 text-sm font-thin text-white shadow-md outline-1 outline-black/10">
+        <div className="font-family-instrument-sans mb-16 rounded-lg bg-slate-400/10 p-8 pb-8 font-thin text-white shadow-md outline-1 outline-black/10">
           <RichText content={content.trainingAndExperience} />
         </div>
 
@@ -38,7 +42,7 @@ function About({ content }: AboutProps) {
           <p className="font-family-inria-sans text-2xl font-bold">
             {content.supportAreas.title}
           </p>
-          <p className="font-family-instrument-sans text-sm font-thin">
+          <p className="font-family-instrument-sans font-thin">
             {content.supportAreas.description}
           </p>
         </div>
@@ -53,7 +57,7 @@ function About({ content }: AboutProps) {
               <AccordionTrigger className="font-family-inria-sans font-bold transition-all duration-500 ease-in-out hover:pl-2">
                 {area.title}
               </AccordionTrigger>
-              <AccordionContent className="font-family-instrument-sans text-sm font-thin transition-all duration-500 ease-in-out">
+              <AccordionContent className="font-family-instrument-sans font-thin transition-all duration-500 ease-in-out">
                 {area.description}
               </AccordionContent>
             </AccordionItem>
@@ -69,7 +73,7 @@ function About({ content }: AboutProps) {
             <p className="font-family-inria-sans text-center text-xl font-bold">
               {content.supportAreas.specificNeedTitle}
             </p>
-            <p className="max-w-[600px] text-center text-sm font-thin">
+            <p className="max-w-[600px] text-center font-thin">
               {content.supportAreas.specificNeedDescription}
             </p>
           </div>

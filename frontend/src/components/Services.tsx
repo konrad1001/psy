@@ -1,20 +1,22 @@
-import type { ServicesPageData } from "../types";
+import type { GlobalConfig, ServicesPageData } from "../types";
 import { urlFor } from "../utils/urlFor";
 import { RichText } from "./richText";
 
 interface ServicesProps {
+  config: GlobalConfig;
+
   content: ServicesPageData;
 }
 
-function Services({ content }: ServicesProps) {
+function Services({ content, config }: ServicesProps) {
   return (
     <section className="flex flex-col" id="services">
-      <div className="font-family-instrument-sans flex flex-col bg-slate-200 px-16 py-24 text-black lg:px-32">
+      <div className="font-family-instrument-sans flex flex-col bg-slate-200 px-8 py-24 text-black sm:px-16 lg:px-32">
         <h1 className="font-family-inria-sans mt-16 flex flex-col space-y-2 text-4xl font-bold">
           {content.heading}
         </h1>
 
-        <div className="font-family-instrument-sans mt-8 text-sm font-thin">
+        <div className="font-family-instrument-sans mt-8 font-thin">
           <RichText content={content.body} />
         </div>
 
@@ -35,7 +37,7 @@ function Services({ content }: ServicesProps) {
             ))}
         </div>
 
-        <div className="font-family-instrument-sans mb-16 text-sm font-thin">
+        <div className="font-family-instrument-sans mb-16 font-thin">
           <RichText content={content.secondaryBody} />
         </div>
 
@@ -44,10 +46,8 @@ function Services({ content }: ServicesProps) {
           <h2 className="font-family-label font-family-inria-sans mb-4 text-2xl font-bold">
             {content.contracts.title}
           </h2>
-          <p className="mb-8 text-sm font-thin">
-            {content.contracts.description}
-          </p>
-          <div className="grid grid-cols-1 gap-8 text-sm lg:grid-cols-2 xl:grid-cols-3">
+          <p className="mb-8 font-thin">{content.contracts.description}</p>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
             {content.contracts.availableContracts.map((contract, index) => (
               <div
                 key={index}
@@ -56,9 +56,7 @@ function Services({ content }: ServicesProps) {
                 <h3 className="font-family-inria-sans mb-2 text-lg font-bold">
                   {contract.title}
                 </h3>
-                <p className="text-sm font-thin text-neutral-600">
-                  {contract.body}
-                </p>
+                <p className="font-thin text-neutral-600">{contract.body}</p>
               </div>
             ))}
           </div>

@@ -8,6 +8,7 @@ import type {
   ServicesPageData,
   ContactPageData,
   FooterData,
+  GlobalConfig,
 } from "./types";
 import Home from "./components/Home";
 import Services from "./components/Services";
@@ -19,6 +20,7 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import ErrorScreen from "./components/error";
 
 interface AppData {
+  global: GlobalConfig | null;
   navigation: NavigationData | null;
   homePage: HomePageData | null;
   servicesPage: ServicesPageData | null;
@@ -31,6 +33,7 @@ function App() {
   const [error, setError] = useState(false);
 
   const [data, setData] = useState<AppData>({
+    global: null,
     navigation: null,
     homePage: null,
     aboutPage: null,
@@ -42,6 +45,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const global = await sanity.fetch<GlobalConfig>(
+          `*[_type == "global"][0]`,
+        );
         const navigation = await sanity.fetch<NavigationData>(
           `*[_type == "navigation"][0]`,
         );
@@ -62,6 +68,7 @@ function App() {
           `*[_type == "footer"][0]`,
         );
         setData({
+          global,
           navigation,
           homePage,
           aboutPage,
@@ -79,6 +86,7 @@ function App() {
   }, []);
 
   if (
+    !data.global ||
     !data.navigation ||
     !data.homePage ||
     !data.aboutPage ||
@@ -99,18 +107,27 @@ function App() {
           <Navigation content={data.navigation} />
           <main className="flex-1">
             <Routes>
-              <Route path="/" element={<Home content={data.homePage} />} />
+              <Route
+                path="/"
+                element={<Home config={data.global} content={data.homePage} />}
+              />
               <Route
                 path="/about"
-                element={<About content={data.aboutPage} />}
+                element={
+                  <About config={data.global} content={data.aboutPage} />
+                }
               />
               <Route
                 path="/services"
-                element={<Services content={data.servicesPage} />}
+                element={
+                  <Services config={data.global} content={data.servicesPage} />
+                }
               />
               <Route
                 path="/contact"
-                element={<Contact content={data.contactPage} />}
+                element={
+                  <Contact config={data.global} content={data.contactPage} />
+                }
               />
             </Routes>
           </main>
