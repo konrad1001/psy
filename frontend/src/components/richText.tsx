@@ -26,7 +26,6 @@ export const RichText = ({ content }: { content: PortableTextBlock[] }) => {
       ),
     },
     block: {
-      // Ex. 1: customizing common block types
       // h6: (type) => <h6 className="text-6xl text-red-500">{type.children}</h6>,
       normal: ({ children }) => {
         return (

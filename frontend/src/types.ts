@@ -2,10 +2,6 @@ import type { PortableTextBlock } from "@portabletext/react";
 
 export interface GlobalConfig {
   primary: ColourData;
-  primaryDark: ColourData;
-  secondary: ColourData;
-  accent1: ColourData;
-  accent2: ColourData;
 }
 
 export interface NavigationData {
