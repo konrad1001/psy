@@ -8,7 +8,7 @@ interface ServicesProps {
   content: ServicesPageData;
 }
 
-function Services({ content, config }: ServicesProps) {
+function Services({ content, config: _config }: ServicesProps) {
   return (
     <section className="flex flex-col" id="services">
       <div className="font-family-instrument-sans flex flex-col bg-slate-200 px-8 py-24 text-black sm:px-16 lg:px-32">
