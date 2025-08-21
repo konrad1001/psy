@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { NavigationData } from "../types";
 import { useLocation } from "react-router-dom";
+import LogoIcon from "./icons/logo";
 
 interface NavigationProps {
   content: NavigationData;
@@ -62,18 +63,9 @@ function Navigation({ content }: NavigationProps) {
       <div className="flex items-center justify-between px-16 py-4 lg:px-32">
         <div className="flex flex-row items-center space-x-2">
           <div className="relative h-12 w-12">
-            <img
-              src="src/assets/logo_white.svg"
-              alt="Logo"
-              className={`absolute inset-0 h-12 w-12 transition-opacity duration-500 ${
-                hasScrolled ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <img
-              src="src/assets/logo_black.svg"
-              alt="Logo"
-              className={`absolute inset-0 h-12 w-12 transition-opacity duration-500 ${
-                hasScrolled ? "opacity-100" : "opacity-0"
+            <LogoIcon
+              className={`absolute inset-0 h-12 w-12 transition-all duration-500 ${
+                hasScrolled ? "fill-black" : "fill-white"
               }`}
             />
           </div>
