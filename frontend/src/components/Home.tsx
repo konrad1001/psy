@@ -54,7 +54,7 @@ function Home({ content, config }: HomeProps) {
       </div>
       <div>
         <ParallaxBanner
-          layers={[{ image: urlFor(content.splashImage).url(), speed: -15 }]}
+          layers={[{ image: urlFor(content.splashImage).url(), speed: 0 }]}
           className="min-h-screen"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>

@@ -1,7 +1,8 @@
 import { useLocation } from "react-router-dom";
-import type { FooterData } from "../types";
+import type { FooterData, GlobalConfig } from "../types";
 
 interface FooterProps {
+  config: GlobalConfig;
   content: FooterData;
   className?: string;
 }

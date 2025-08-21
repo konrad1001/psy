@@ -19,7 +19,7 @@ function About({ content, config }: AboutProps) {
     <section id="about" className={`flex flex-col`}>
       <div
         style={{ backgroundColor: config.primary.hex }}
-        className="font-family-instrument-sans px-8 py-24 text-white sm:px-16 lg:px-32"
+        className="font-family-instrument-sans px-8 py-24 text-black sm:px-16 lg:px-32"
       >
         <div
           className="pointer-events-none absolute inset-0 h-full opacity-50"
@@ -34,7 +34,7 @@ function About({ content, config }: AboutProps) {
           )}
         </div>
 
-        <div className="font-family-instrument-sans mb-16 rounded-lg bg-slate-400/10 p-8 pb-8 font-thin text-white shadow-md outline-1 outline-black/10">
+        <div className="font-family-instrument-sans mb-16 rounded-lg bg-slate-400/10 p-8 pb-8 font-thin text-black shadow-md outline-1 outline-black/10">
           <RichText content={content.trainingAndExperience} />
         </div>
 
@@ -67,7 +67,7 @@ function About({ content, config }: AboutProps) {
         <div className="mb-16" />
 
         <div className="flex flex-col items-center">
-          <HeartIcon className="h-16 w-16 text-white opacity-50 transition-all duration-500 ease-in-out hover:scale-110" />
+          <HeartIcon className="h-16 w-16 text-black opacity-50 transition-all duration-500 ease-in-out hover:scale-110" />
 
           <div className="space-y-4 py-8 md:px-16">
             <p className="font-family-inria-sans text-center text-xl font-bold">

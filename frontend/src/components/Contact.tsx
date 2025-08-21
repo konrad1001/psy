@@ -48,7 +48,7 @@ function Contact({ content, config }: ContactProps) {
     <section className="flex flex-col" id="contact">
       <div
         style={{ backgroundColor: config.primary.hex }}
-        className="font-family-instrument-sans flex flex-col px-8 py-24 text-white transition-all duration-0 ease-in-out sm:px-16 lg:px-32"
+        className="font-family-instrument-sans flex flex-col px-8 py-24 text-black transition-all duration-0 ease-in-out sm:px-16 lg:px-32"
       >
         <div
           className="pointer-events-none absolute inset-0 h-full opacity-50"
