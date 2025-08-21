@@ -75,7 +75,7 @@ function Navigation({ content }: NavigationProps) {
           </div>
         </div>
 
-        <div className="hidden lg:flex">
+        <div className="hidden space-x-12 lg:flex">
           <NavBarButton
             label={content.tabNames[0] || "Home"}
             href="/"
@@ -103,17 +103,17 @@ function Navigation({ content }: NavigationProps) {
             <button onClick={toggleNavPanel}>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div
-                  className={`h-1 w-6 rounded-full ${hasScrolled ? "bg-black" : "bg-white"} transition-transform duration-300 ${
+                  className={`bg-primary-dark h-1 w-6 rounded-full transition-transform duration-300 ${
                     navPanelOpen ? "translate-y-2 rotate-45" : ""
                   }`}
                 ></div>
                 <div
-                  className={`h-1 w-6 rounded-full ${hasScrolled ? "bg-black" : "bg-white"} transition-opacity duration-300 ${
+                  className={`bg-primary-dark h-1 w-6 rounded-full transition-opacity duration-300 ${
                     navPanelOpen ? "opacity-0" : ""
                   }`}
                 ></div>
                 <div
-                  className={`h-1 w-6 rounded-full ${hasScrolled ? "bg-black" : "bg-white"} transition-transform duration-300 ${
+                  className={`bg-primary-dark h-1 w-6 rounded-full transition-transform duration-300 ${
                     navPanelOpen ? "-translate-y-2 -rotate-45" : ""
                   }`}
                 ></div>
@@ -128,22 +128,22 @@ function Navigation({ content }: NavigationProps) {
           <div className="fixed left-0 top-20 z-40 h-full w-full bg-slate-50 shadow-lg lg:hidden">
             <div className="flex flex-col items-center justify-center space-y-4 p-8">
               <NavBarButton
-                label="Home"
+                label={content.tabNames[0] || "Home"}
                 href="/"
-                isActive={currentPath === "/home"}
+                isActive={currentPath === "/home" || currentPath === "/"}
               />
               <NavBarButton
-                label="About"
+                label={content.tabNames[1] || "About"}
                 href="/about"
                 isActive={currentPath === "/about"}
               />
               <NavBarButton
-                label="Services"
+                label={content.tabNames[2] || "Services"}
                 href="/services"
                 isActive={currentPath === "/services"}
               />
               <NavBarButton
-                label="Contact"
+                label={content.tabNames[3] || "Contact"}
                 href="/contact"
                 isActive={currentPath === "/contact"}
               />
@@ -169,7 +169,7 @@ function NavBarButton({
   return (
     <a
       href={href}
-      className={`font-family-inter mx-2 px-2 py-2 text-sm transition-all duration-300 hover:underline hover:decoration-2 hover:underline-offset-8 xl:px-4 ${
+      className={`font-family-inter py-2 text-sm transition-all duration-300 hover:underline hover:decoration-2 hover:underline-offset-8 ${
         isActive
           ? "text-primary-dark font-bold"
           : "decoration-primary hover:text-black/40 hover:decoration-black/20"

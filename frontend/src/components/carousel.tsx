@@ -78,7 +78,7 @@ function ImageCarousel({
         <img
           src={urlFor(images[0]).url()}
           alt={`${altTextPrefix} 1`}
-          className="h-full w-full rounded-2xl object-cover"
+          className="h-full w-full rounded-lg object-cover"
         />
       </div>
     );
@@ -99,7 +99,7 @@ function ImageCarousel({
             key={index}
             src={urlFor(image).url()}
             alt={`${altTextPrefix} ${index + 1}`}
-            className="flex-shrink-0 rounded-2xl object-cover"
+            className="flex-shrink-0 rounded-lg object-cover"
           />
         ))}
       </div>

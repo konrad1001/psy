@@ -10,25 +10,20 @@ interface HomeProps {
 }
 
 function Home({ content, config }: HomeProps) {
-  console.log(config);
+  const disableParallax = window.innerWidth < 768; // Disable parallax effect on mobile
+
   return (
     <section id="home" className="flex flex-col">
       {/* Green */}
-
       <div
         style={{ backgroundColor: config.primary.hex }}
         className={`flex min-h-screen flex-col items-center justify-center px-8 text-black sm:px-16 lg:px-32`}
       >
-        <div
-          className="pointer-events-none absolute inset-0 h-full opacity-50"
-          style={{
-            backgroundImage: `url(data:image/png;base64,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)`,
-          }}
-        />
-        <Parallax speed={-15}>
+        <div className="pointer-events-none absolute inset-0 h-full opacity-50" />
+        <Parallax speed={disableParallax ? 0 : -15}>
           <div className="my-32 flex-col">
             <div className="z-10 flex flex-col justify-between space-y-4 md:flex-row">
-              <div className="flex-1 flex-col space-y-4 md:pr-16 lg:pr-64">
+              <div className="flex-1 flex-col space-y-4 md:pr-16 lg:pr-16">
                 <h1 className="font-family-inria-sans text-4xl font-bold md:text-6xl">
                   {content.therapistName}
                 </h1>
@@ -43,11 +38,13 @@ function Home({ content, config }: HomeProps) {
                 </p>
               </div>
 
-              <img
-                src={urlFor(content.photo).url()}
-                alt="Adam Souter, Gestalt Psychotherapist"
-                className="relative mx-auto aspect-square h-80 w-80 rounded-2xl object-cover shadow-lg"
-              />
+              <div className="flex flex-1 items-center justify-center">
+                <img
+                  src={urlFor(content.photo).url()}
+                  alt="Adam Souter, Gestalt Psychotherapist"
+                  className="relative mx-auto aspect-square h-80 w-80 rounded-lg object-cover shadow-lg md:h-96 md:w-96"
+                />
+              </div>
             </div>
           </div>
         </Parallax>
@@ -59,27 +56,29 @@ function Home({ content, config }: HomeProps) {
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="mx-8 flex-col space-y-2 rounded-2xl bg-black/20 p-6 text-white backdrop-blur-[2px] backdrop-brightness-90 sm:mx-16 md:space-y-8 md:p-8 lg:mx-32">
-              <p className="font-family-inria-sans text-2xl font-bold">
-                {content.approachTitle}
-              </p>
-              <p className="font-family-instrument-sans pb-12 font-thin lg:pr-48 xl:pr-64">
-                {content.approachText}
-              </p>
-              <RoundedButton
-                text={content.learnMoreButtonText}
-                className="bg-primary"
-                destination="/services"
-              />
-            </div>
+            <Parallax speed={-0}>
+              <div className="mx-8 flex-col space-y-2 rounded-lg bg-black/20 p-6 text-white backdrop-blur-[2px] backdrop-brightness-90 sm:mx-16 md:space-y-8 md:p-12 lg:mr-80">
+                <p className="font-family-inria-sans text-2xl font-bold">
+                  {content.approachTitle}
+                </p>
+                <p className="font-family-instrument-sans pb-4 font-thin">
+                  {content.approachText}
+                </p>
+                <RoundedButton
+                  text={content.learnMoreButtonText}
+                  className="bg-primary hover:bg-primary-dark"
+                  destination="/services"
+                />
+              </div>
+            </Parallax>
           </div>
         </ParallaxBanner>
       </div>
 
       {/* White */}
-      <div>
-        <Parallax speed={0}>
-          <div className="flex min-h-screen flex-col items-center space-y-8 bg-slate-200 px-8 py-32 sm:px-16 lg:flex-row lg:px-32">
+      <div className="min-h-screen bg-slate-200 px-8 py-40 sm:px-16 lg:px-32">
+        <Parallax speed={disableParallax ? 0 : -5}>
+          <div className="flex flex-col items-center space-y-8 lg:flex-row">
             <div className="flex flex-1 flex-col space-y-8 md:mr-16">
               <p className="font-family-inria-sans text-2xl font-bold">
                 {content.officeSection.title}
@@ -94,12 +93,12 @@ function Home({ content, config }: HomeProps) {
 
               <RoundedButton
                 text={content.contactButtonText}
-                className="bg-amber-400/90 hover:bg-amber-500"
+                className="bg-amber-500 hover:bg-amber-600"
                 destination="/contact"
               />
             </div>
 
-            <div className="mx-8 flex-1 overflow-clip rounded-2xl md:mx-16 lg:mx-0">
+            <div className="mx-8 flex-1 overflow-clip rounded-lg md:mx-16 lg:mx-0">
               <ImageCarousel
                 images={content.officeSection.images}
                 className="object-fill"
@@ -116,7 +115,5 @@ function Home({ content, config }: HomeProps) {
     </section>
   );
 }
-
-//flex aspect-[4/3] h-80
 
 export default Home;
