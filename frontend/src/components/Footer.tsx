@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import type { FooterData, GlobalConfig } from "../types";
 
 interface FooterProps {
@@ -8,17 +7,8 @@ interface FooterProps {
 }
 
 function Footer({ content, className = "" }: FooterProps) {
-  const location = useLocation();
-  const pathname = location.pathname;
-  const isLight =
-    pathname.startsWith("/services") ||
-    pathname.startsWith("/home") ||
-    pathname === "/";
-
   return (
-    <footer
-      className={`py-16 ${className} ${isLight ? "bg-slate-200 text-black/50" : "bg-primary-dark text-white/50"}`}
-    >
+    <footer className={`py-16 ${className} ${"bg-slate-50 text-black/50"}`}>
       <div className="container mx-auto text-center">
         <p className="font-family-instrument-sans">{content.footerText}</p>
       </div>

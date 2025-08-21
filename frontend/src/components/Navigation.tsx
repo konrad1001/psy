@@ -64,12 +64,12 @@ function Navigation({ content }: NavigationProps) {
         <div className="flex flex-row items-center space-x-2">
           <div className="relative h-12 w-12">
             <LogoIcon
-              className={`absolute inset-0 h-12 w-12 transition-all duration-500`}
+              className={`fill-primary-dark absolute inset-0 h-12 w-12`}
             />
           </div>
 
           <div>
-            <h1 className="font-family-inter hidden font-black md:block">
+            <h1 className="font-family-inter text-primary-dark hidden font-black md:block">
               {content.logoText}
             </h1>
           </div>
@@ -171,7 +171,7 @@ function NavBarButton({
       href={href}
       className={`font-family-inter mx-2 px-2 py-2 text-sm transition-all duration-300 hover:underline hover:decoration-2 hover:underline-offset-8 xl:px-4 ${
         isActive
-          ? "font-bold"
+          ? "text-primary-dark font-bold"
           : "decoration-primary hover:text-black/40 hover:decoration-black/20"
       }`}
     >

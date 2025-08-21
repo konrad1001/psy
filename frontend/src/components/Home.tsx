@@ -59,7 +59,7 @@ function Home({ content, config }: HomeProps) {
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="mx-8 flex-col space-y-2 rounded-2xl bg-black/40 p-10 text-white backdrop-blur-[2px] backdrop-brightness-90 sm:mx-16 md:space-y-8 md:p-16 lg:mx-32">
+            <div className="mx-8 flex-col space-y-2 rounded-2xl bg-black/20 p-6 text-white backdrop-blur-[2px] backdrop-brightness-90 sm:mx-16 md:space-y-8 md:p-8 lg:mx-32">
               <p className="font-family-inria-sans text-2xl font-bold">
                 {content.approachTitle}
               </p>
@@ -68,8 +68,7 @@ function Home({ content, config }: HomeProps) {
               </p>
               <RoundedButton
                 text={content.learnMoreButtonText}
-                bgColor={config.primary.hex}
-                hoverColor={config.primary.hex}
+                className="bg-primary"
                 destination="/services"
               />
             </div>
