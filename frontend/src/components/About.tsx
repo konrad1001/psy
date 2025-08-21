@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import type { AboutPageData } from "../types";
-import Label from "./label";
 import {
   Accordion,
   AccordionContent,
@@ -8,7 +6,6 @@ import {
   AccordionTrigger,
 } from "./accordion";
 import { RichText } from "./richText";
-import { urlFor } from "../utils/urlFor";
 import RoundedButton from "./roundedButton";
 import HeartIcon from "./icons/heart";
 

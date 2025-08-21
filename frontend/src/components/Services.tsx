@@ -1,6 +1,5 @@
 import type { ServicesPageData } from "../types";
 import { urlFor } from "../utils/urlFor";
-import Label from "./label";
 import { RichText } from "./richText";
 
 interface ServicesProps {

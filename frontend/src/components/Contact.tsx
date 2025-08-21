@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Label from "./label";
 import type { ContactPageData } from "../types";
 import { RichText } from "./richText";
 

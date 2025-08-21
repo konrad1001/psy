@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { NavigationData } from "../types";
-import { urlFor } from "../utils/urlFor";
 import { useLocation } from "react-router-dom";
 
 interface NavigationProps {
