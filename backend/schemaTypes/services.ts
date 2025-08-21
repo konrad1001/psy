@@ -4,12 +4,6 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'label',
-      title: 'Label',
-      type: 'string',
-      description: 'Label that goes above the title, e.g., "What I do"',
-    },
-    {
       name: 'heading',
       title: 'Section Heading',
       type: 'string',

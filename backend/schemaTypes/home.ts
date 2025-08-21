@@ -37,15 +37,21 @@ export default {
       },
     },
     {
-      name: 'practiceTitle',
-      title: 'My Practice Title',
+      name: 'approachTitle',
+      title: 'My Approach Title',
       type: 'string',
-      initialValue: 'My Practice',
+      initialValue: 'My Approach',
     },
     {
-      name: 'practiceText',
-      title: 'My Practice Description',
+      name: 'approachText',
+      title: 'My Approach Description',
       type: 'text',
+    },
+    {
+      name: 'learnMoreButtonText',
+      title: 'Learn More Button Text',
+      description: 'This button links to the service (Therapy) page',
+      type: 'string',
     },
     {
       name: 'splashImage',
@@ -87,6 +93,12 @@ export default {
           type: 'text',
         },
       ],
+    },
+    {
+      name: 'contactButtonText',
+      title: 'Contact Button Text',
+      type: 'string',
+      description: 'This button links to the contact page',
     },
   ],
 }

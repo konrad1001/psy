@@ -13,10 +13,12 @@ export interface HomePageData {
   pronouns: string;
   introText: string;
   photo: SanityImage;
-  practiceTitle: string;
-  practiceText: string;
+  approachTitle: string;
+  approachText: string;
+  learnMoreButtonText: string;
   splashImage: SanityImage;
   officeSection: HomeOfficeSection;
+  contactButtonText: string;
 }
 
 export interface HomeOfficeSection {
@@ -29,7 +31,6 @@ export interface HomeOfficeSection {
 export interface AboutPageData {
   _type: "aboutPage";
   _id: string;
-  label: string;
   name: string;
   accreditation?: string;
   trainingAndExperience: PortableTextBlock[];
@@ -39,7 +40,6 @@ export interface AboutPageData {
 export interface ServicesPageData {
   _type: "services";
   _id: string;
-  label: string;
   heading: string;
   body: PortableTextBlock[];
   figures?: SanityImage[];
@@ -65,9 +65,8 @@ export interface ServiceItem {
 export interface ContactPageData {
   _type: "contactPage";
   _id: string;
-  label: string;
   title: string;
-  description: string;
+  description: PortableTextBlock[];
   contactFormTitle: string;
   details: ContactDetails;
   location: ContactLocation;

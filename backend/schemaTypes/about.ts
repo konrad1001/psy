@@ -4,12 +4,6 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'label',
-      title: 'Page Label',
-      type: 'string',
-      description: 'Label that goes above the title, e.g., "About Me"',
-    },
-    {
       name: 'name',
       title: 'Name',
       type: 'string',
@@ -74,15 +68,7 @@ export default {
             },
           ],
         },
-        {
-          name: 'specificNeedImage',
-          title: 'Specific Need Image',
-          description: 'Optional icon',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-        },
+
         {
           name: 'specificNeedTitle',
           title: 'Specific Need Title',

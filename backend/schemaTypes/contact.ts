@@ -4,12 +4,6 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'label',
-      title: 'Page Label',
-      type: 'string',
-      description: 'Label that goes above the title.',
-    },
-    {
       name: 'title',
       title: 'Page Title',
       type: 'string',
@@ -18,8 +12,8 @@ export default {
     {
       name: 'description',
       title: 'Page Description',
-      type: 'text',
-      rows: 3,
+      type: 'array',
+      of: [{type: 'block'}],
       description: 'Short description of the page, e.g.',
     },
     {

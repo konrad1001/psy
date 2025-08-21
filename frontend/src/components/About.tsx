@@ -10,6 +10,7 @@ import {
 import { RichText } from "./richText";
 import { urlFor } from "../utils/urlFor";
 import RoundedButton from "./roundedButton";
+import HeartIcon from "./icons/heart";
 
 interface AboutProps {
   content: AboutPageData;
@@ -65,13 +66,7 @@ function About({ content }: AboutProps) {
         <div className="mb-16" />
 
         <div className="flex flex-col items-center">
-          {content.supportAreas.specificNeedImage && (
-            <img
-              src={urlFor(content.supportAreas.specificNeedImage).url()}
-              alt={content.supportAreas.specificNeedTitle}
-              className="flex w-16 self-center opacity-50 transition-all duration-500 ease-in-out hover:scale-110"
-            />
-          )}
+          <HeartIcon className="h-16 w-16 text-white opacity-50 transition-all duration-500 ease-in-out hover:scale-110" />
 
           <div className="space-y-4 py-8 md:px-16">
             <p className="font-family-inria-sans text-center text-xl font-bold">
@@ -85,6 +80,7 @@ function About({ content }: AboutProps) {
           <div className="peer flex justify-center">
             <RoundedButton
               destination="/contact"
+              className="bg-amber-600/90 hover:bg-amber-500/90"
               text={content.supportAreas.contactButtonText}
             />
           </div>

@@ -56,16 +56,16 @@ function Home({ content }: HomeProps) {
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="mx-16 flex-col space-y-2 rounded-2xl bg-black/40 p-10 text-white md:space-y-8 md:p-16 lg:mx-32">
+            <div className="mx-16 flex-col space-y-2 rounded-2xl bg-black/40 p-10 text-white backdrop-blur-[2px] backdrop-brightness-90 md:space-y-8 md:p-16 lg:mx-32">
               <p className="font-family-inria-sans text-2xl font-bold">
-                My Approach
+                {content.approachTitle}
               </p>
               <p className="font-family-instrument-sans pb-12 text-sm font-thin lg:pr-48 xl:pr-64">
-                {content.practiceText}
+                {content.approachText}
               </p>
               <RoundedButton
-                text="Learn More"
-                bgColor="amber-600"
+                text={content.learnMoreButtonText}
+                className="bg-primary hover:bg-primary-dark"
                 destination="/services"
               />
             </div>
@@ -90,8 +90,8 @@ function Home({ content }: HomeProps) {
               </p>
 
               <RoundedButton
-                text="Contact Me"
-                bgColor="amber-600"
+                text={content.contactButtonText}
+                className="bg-amber-400/90 hover:bg-amber-500"
                 destination="/contact"
               />
             </div>

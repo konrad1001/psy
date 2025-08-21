@@ -8,15 +8,18 @@ interface NavigationProps {
 }
 
 function Navigation({ content }: NavigationProps) {
+  const largeScreenBreakpoint = 1024;
+  const scrollPositionBreakpoint = 100;
+
   const location = useLocation();
   const currentPath = location.pathname;
 
-  console.log("Current Path:", currentPath);
-  console.log(currentPath in ["/", "/home", "/about", "/contact"]);
-
   const [navPanelOpen, setNavPanelOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(
-    !["/", "/home", "/about", "/contact"].includes(currentPath),
+    !(
+      ["/", "/home", "/about", "/contact"].includes(currentPath) &&
+      window.innerWidth > largeScreenBreakpoint
+    ),
   );
 
   const toggleNavPanel = () => {
@@ -24,26 +27,38 @@ function Navigation({ content }: NavigationProps) {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < largeScreenBreakpoint) {
+        setHasScrolled(true);
+      } else {
+        setHasScrolled(false);
+      }
+    };
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-
-      if (["/", "/home", "/about", "/contact"].includes(currentPath)) {
-        setHasScrolled(scrollPosition > 100);
+      if (
+        ["/", "/home", "/about", "/contact"].includes(currentPath) &&
+        window.innerWidth > largeScreenBreakpoint
+      ) {
+        setHasScrolled(scrollPosition > scrollPositionBreakpoint);
       } else {
         setHasScrolled(true);
       }
     };
 
+    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
     <div
-      className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-white/100 text-black shadow-md" : "bg-transparent text-white"} transition-all duration-500`}
+      className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-slate-50 text-black shadow-md" : "bg-transparent text-white"} transition-all duration-500`}
     >
       <div className="flex items-center justify-between px-16 py-4 lg:px-32">
         <div className="flex flex-row items-center space-x-2">
@@ -121,7 +136,7 @@ function Navigation({ content }: NavigationProps) {
 
       <div className="flex-col items-center">
         {navPanelOpen && (
-          <div className="fixed left-0 top-20 z-40 h-full w-full bg-white shadow-lg lg:hidden">
+          <div className="fixed left-0 top-20 z-40 h-full w-full bg-slate-50 shadow-lg lg:hidden">
             <div className="flex flex-col items-center justify-center space-y-4 p-8">
               <NavBarButton
                 label="Home"
@@ -165,10 +180,10 @@ function NavBarButton({
   return (
     <a
       href={href}
-      className={`font-family-inter mx-2 px-2 py-2 text-sm transition-all duration-300 xl:px-4 ${
+      className={`font-family-inter mx-2 px-2 py-2 text-sm transition-all duration-300 hover:underline hover:decoration-2 hover:underline-offset-8 xl:px-4 ${
         isActive
           ? "font-bold"
-          : "decoration-primary hover:text-black/40 hover:underline hover:decoration-black/20 hover:decoration-2 hover:underline-offset-8"
+          : "decoration-primary hover:text-black/40 hover:decoration-black/20"
       }`}
     >
       {label}

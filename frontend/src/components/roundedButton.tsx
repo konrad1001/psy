@@ -1,20 +1,18 @@
 interface RoundedButtonProps {
   text: string;
-  fgColor?: string;
-  bgColor?: string;
+  className?: string;
   destination: string;
 }
 
 function RoundedButton({
   text,
-  fgColor,
-  bgColor,
+  className = "",
   destination,
 }: RoundedButtonProps) {
   return (
     <a
       href={destination}
-      className={`font-family-instrument-sans bg-primary self-start rounded-full px-8 py-3 font-bold text-white shadow-md transition-colors duration-300 hover:bg-amber-500/30`}
+      className={`font-family-instrument-sans self-start rounded-full px-8 py-3 font-bold shadow-md transition-colors duration-300 ${className}`}
     >
       {text}
     </a>

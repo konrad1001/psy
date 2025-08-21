@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Label from "./label";
 import type { ContactPageData } from "../types";
+import { RichText } from "./richText";
 
 interface ContactProps {
   content: ContactPageData;
@@ -56,7 +57,9 @@ function Contact({ content }: ContactProps) {
           {content.title}
         </h1>
 
-        <p className="mb-16 text-sm font-thin">{content.description}</p>
+        <p className="mb-16 text-sm font-thin">
+          <RichText content={content.description} />
+        </p>
 
         {/* Main Content */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">

@@ -16,6 +16,7 @@ import Contact from "./components/Contact";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { ParallaxProvider } from "react-scroll-parallax";
+import ErrorScreen from "./components/error";
 
 interface AppData {
   navigation: NavigationData | null;
@@ -27,6 +28,8 @@ interface AppData {
 }
 
 function App() {
+  const [error, setError] = useState(false);
+
   const [data, setData] = useState<AppData>({
     navigation: null,
     homePage: null,
@@ -68,6 +71,7 @@ function App() {
         });
       } catch (error) {
         console.error(error);
+        setError(true);
       }
     };
 
@@ -83,6 +87,10 @@ function App() {
     !data.footer
   )
     return <div></div>;
+
+  if (error) {
+    return <ErrorScreen />;
+  }
 
   return (
     <Router>
@@ -106,7 +114,7 @@ function App() {
               />
             </Routes>
           </main>
-          {/* <Footer content={data.footer} /> */}
+          <Footer content={data.footer} />
         </div>
       </ParallaxProvider>
     </Router>
