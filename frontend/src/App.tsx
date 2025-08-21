@@ -18,6 +18,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { ParallaxProvider } from "react-scroll-parallax";
 import ErrorScreen from "./components/error";
+import AnalyticsProvider from "./analytics/analyticsProvider";
 
 interface AppData {
   global: GlobalConfig | null;
@@ -102,6 +103,7 @@ function App() {
 
   return (
     <Router>
+      <AnalyticsProvider />
       <ParallaxProvider>
         <div className="relative min-h-screen">
           <Navigation content={data.navigation} />
