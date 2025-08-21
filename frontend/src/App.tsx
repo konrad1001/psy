@@ -131,7 +131,7 @@ function App() {
               />
             </Routes>
           </main>
-          <Footer content={data.footer} />
+          <Footer config={data.global} content={data.footer} />
         </div>
       </ParallaxProvider>
     </Router>
