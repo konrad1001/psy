@@ -22,7 +22,7 @@ function Home({ content, config }: HomeProps) {
         <div className="pointer-events-none absolute inset-0 h-full opacity-50" />
         <Parallax speed={disableParallax ? 0 : -15}>
           <div className="my-32 flex-col">
-            <div className="z-10 flex flex-col justify-between space-y-4 md:flex-row">
+            <div className="flex flex-col justify-between space-y-4 md:flex-row">
               <div className="flex-1 flex-col space-y-4 md:pr-16 lg:pr-16">
                 <h1 className="font-family-inria-sans text-4xl font-bold md:text-6xl">
                   {content.therapistName}
@@ -38,7 +38,7 @@ function Home({ content, config }: HomeProps) {
                 </p>
               </div>
 
-              <div className="flex flex-1 items-center justify-center">
+              <div className="flex flex-1 xl:ml-64">
                 <img
                   src={urlFor(content.photo).url()}
                   alt="Adam Souter, Gestalt Psychotherapist"
@@ -67,7 +67,7 @@ function Home({ content, config }: HomeProps) {
                 <RoundedButton
                   text={content.learnMoreButtonText}
                   className="bg-primary hover:bg-primary-dark"
-                  destination="/services"
+                  destination="/about"
                 />
               </div>
             </Parallax>

@@ -27,6 +27,18 @@ function Navigation({ content }: NavigationProps) {
   };
 
   useEffect(() => {
+    if (navPanelOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [navPanelOpen]);
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < largeScreenBreakpoint) {
         setHasScrolled(true);
@@ -58,10 +70,10 @@ function Navigation({ content }: NavigationProps) {
 
   return (
     <div
-      className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-slate-50 text-black shadow-md" : "bg-transparent text-black"} transition-all duration-500`}
+      className={`fixed left-0 right-0 top-0 z-50 w-full flex-col ${hasScrolled ? "bg-white text-black shadow-md" : "bg-transparent text-black"} transition-all duration-500`}
     >
       <div className="flex items-center justify-between px-8 py-4 sm:px-16 lg:px-32">
-        <div className="flex flex-row items-center space-x-2">
+        <a href="/" className="flex flex-row items-center space-x-2">
           <div className="relative h-12 w-12">
             <LogoIcon
               className={`fill-primary-dark absolute inset-0 h-12 w-12`}
@@ -73,7 +85,7 @@ function Navigation({ content }: NavigationProps) {
               {content.logoText}
             </h1>
           </div>
-        </div>
+        </a>
 
         <div className="hidden space-x-12 lg:flex">
           <NavBarButton
