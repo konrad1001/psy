@@ -29,7 +29,7 @@ function About({ content, config }: AboutProps) {
           )}
         </div>
 
-        <div className="font-family-instrument-sans mb-16 rounded-lg bg-white p-8 pb-8 font-thin text-black shadow-md">
+        <div className="font-family-instrument-sans mb-24 font-thin">
           <RichText content={content.trainingAndExperience} />
         </div>
 

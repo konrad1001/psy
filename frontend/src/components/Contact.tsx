@@ -39,8 +39,6 @@ function Contact({ content, config }: ContactProps) {
       return;
     }
 
-    console.log("Form submitted:", formData);
-
     setIsSubmitted(true);
   };
 
@@ -63,7 +61,7 @@ function Contact({ content, config }: ContactProps) {
         {/* Main Content */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
           {/* Left: Fees + Contact Form */}
-          <div className="rounded-lg bg-white p-8 shadow-md">
+          <div className="rounded-lg bg-white p-4 shadow-md md:p-8">
             <h2 className="font-family-label text-xl font-bold">
               {content.fees.title}
             </h2>
@@ -151,7 +149,7 @@ function Contact({ content, config }: ContactProps) {
           </div>
 
           {/* Right: Contact Details */}
-          <div className="space-y-8 rounded-lg bg-white p-8 shadow-md">
+          <div className="space-y-8 rounded-lg bg-white p-4 shadow-md md:p-8">
             <div>
               <h2 className="font-family-label mb-4 text-xl font-bold">
                 {content.details.title}
@@ -172,7 +170,7 @@ function Contact({ content, config }: ContactProps) {
               ))}
             </div>
             <div>
-              <div className="rounded p-4">
+              <div className="overflow-hidden rounded-lg">
                 <iframe
                   src={content.location.mapEmbedUrl}
                   width="100%"

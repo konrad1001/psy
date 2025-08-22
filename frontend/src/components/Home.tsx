@@ -78,7 +78,7 @@ function Home({ content, config }: HomeProps) {
       {/* White */}
       <div className="min-h-screen bg-slate-200 px-8 py-40 sm:px-16 lg:px-32">
         <Parallax speed={disableParallax ? 0 : -5}>
-          <div className="flex flex-col items-center space-y-8 lg:flex-row">
+          <div className="flex flex-col items-center space-y-8 md:flex-row">
             <div className="flex flex-1 flex-col space-y-8 md:mr-16">
               <p className="font-family-inria-sans text-2xl font-bold">
                 {content.officeSection.title}
@@ -86,6 +86,16 @@ function Home({ content, config }: HomeProps) {
               <p className="font-family-instrument-sans font-thin">
                 {content.officeSection.descriptionTop}
               </p>
+
+              <ImageCarousel
+                images={content.officeSection.images}
+                className="sm:mx-16 md:hidden"
+                showArrows={true}
+                showDots={true}
+                autoPlay={true}
+                autoPlayInterval={4000}
+                altTextPrefix="My Office"
+              />
 
               <p className="font-family-instrument-sans font-thin">
                 {content.officeSection.descriptionBottom}
@@ -98,7 +108,7 @@ function Home({ content, config }: HomeProps) {
               />
             </div>
 
-            <div className="mx-8 flex-1 overflow-clip rounded-lg md:mx-16 lg:mx-0">
+            <div className="hidden flex-1 overflow-clip rounded-lg md:block">
               <ImageCarousel
                 images={content.officeSection.images}
                 className="object-fill"
