@@ -5,7 +5,13 @@ import {
 } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
 
-export const RichText = ({ content }: { content: PortableTextBlock[] }) => {
+export const RichText = ({
+  content,
+  className,
+}: {
+  content: PortableTextBlock[];
+  className?: string;
+}) => {
   const components: Partial<PortableTextReactComponents> = {
     marks: {
       link: ({ value, children }: PortableTextMarkComponentProps) => {
@@ -44,7 +50,7 @@ export const RichText = ({ content }: { content: PortableTextBlock[] }) => {
     },
   };
   return (
-    <div className="font-thin">
+    <div className={`font-thin ${className}`}>
       <PortableText value={content} components={components} />
     </div>
   );

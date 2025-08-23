@@ -21,9 +21,7 @@ function Contact({ content, config }: ContactProps) {
           {content.title}
         </h1>
 
-        <p className="mb-16 font-thin">
-          <RichText content={content.description} />
-        </p>
+        <RichText content={content.description} className="mb-16 font-thin" />
 
         {/* Main Content */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
