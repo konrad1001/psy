@@ -45,49 +45,58 @@ function Form() {
       data-netlify="true"
     >
       <div>
-        <label className="font-family-label mb-2 block">Your Name</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Enter your full name"
-          className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
-        />
+        <label className="font-family-label mb-2 block">
+          Your Name
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Enter your full name"
+            className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
+          />
+        </label>
       </div>
       <div>
-        <label className="font-family-label mb-2 block">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Enter your email address"
-          className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
-        />
+        <label className="font-family-label mb-2 block">
+          Email
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter your email address"
+            className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
+          />
+        </label>
       </div>
       <div>
-        <label className="font-family-label mb-2 block">Subject</label>
-        <input
-          type="text"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-          placeholder="What would you like to discuss?"
-          className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
-        />
+        <label className="font-family-label mb-2 block">
+          Subject
+          <input
+            type="text"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            placeholder="What would you like to discuss?"
+            className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
+          />
+        </label>
       </div>
       <div>
-        <label className="font-family-label mb-2 block">Your Message</label>
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Tell me a bit about what you're looking for..."
-          className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
-          rows={4}
-        ></textarea>
+        <label className="font-family-label mb-2 block">
+          Your Message
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Tell me a bit about what you're looking for..."
+            className="font-family-label w-full rounded border border-gray-300 px-4 py-2"
+            rows={4}
+          ></textarea>
+        </label>
       </div>
+
       <div className="flex justify-end">
         <button
           type="submit"
