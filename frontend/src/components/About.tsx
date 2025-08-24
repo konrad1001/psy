@@ -25,7 +25,7 @@ function About({ content, config }: AboutProps) {
         <div className="font-family-inria-sans my-16 flex flex-col space-y-2 text-4xl font-bold">
           <h1 className="">{content.name}</h1>
           {content.accreditation && (
-            <h1 className="">{content.accreditation}</h1>
+            <h2 className="">{content.accreditation}</h2>
           )}
         </div>
 
@@ -34,9 +34,9 @@ function About({ content, config }: AboutProps) {
         </div>
 
         <div className="flex flex-1 flex-col space-y-8">
-          <p className="font-family-inria-sans text-2xl font-bold">
+          <h3 className="font-family-inria-sans text-2xl font-bold">
             {content.supportAreas.title}
-          </p>
+          </h3>
           <p className="font-family-instrument-sans font-thin">
             {content.supportAreas.description}
           </p>

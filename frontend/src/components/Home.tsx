@@ -80,9 +80,9 @@ function Home({ content, config }: HomeProps) {
         <Parallax speed={disableParallax ? 0 : -5}>
           <div className="flex flex-col items-center space-y-8 md:flex-row">
             <div className="flex flex-1 flex-col space-y-8 md:mr-16">
-              <p className="font-family-inria-sans text-2xl font-bold">
+              <h3 className="font-family-inria-sans text-2xl font-bold">
                 {content.officeSection.title}
-              </p>
+              </h3>
               <p className="font-family-instrument-sans font-thin">
                 {content.officeSection.descriptionTop}
               </p>

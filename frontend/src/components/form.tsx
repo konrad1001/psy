@@ -56,8 +56,6 @@ function Form() {
 
   return (
     <>
-      {/* Hidden form for Netlify bot detection */}
-
       {/* Actual form */}
       <form
         className="space-y-4"
