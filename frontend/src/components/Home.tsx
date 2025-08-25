@@ -78,46 +78,64 @@ function Home({ content, config }: HomeProps) {
       {/* White */}
       <div className="min-h-screen bg-slate-200 px-8 py-40 sm:px-16 lg:px-32">
         <Parallax speed={disableParallax ? 0 : -5}>
-          <div className="flex flex-col items-center space-y-8 md:flex-row">
-            <div className="flex flex-1 flex-col space-y-8 md:mr-16">
-              <h3 className="font-family-inria-sans text-2xl font-bold">
-                {content.officeSection.title}
-              </h3>
-              <p className="font-family-instrument-sans font-thin">
-                {content.officeSection.descriptionTop}
-              </p>
+          <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center space-y-8 md:flex-row">
+              <div className="flex flex-1 flex-col space-y-8 md:mr-16">
+                <h3 className="font-family-inria-sans text-2xl font-bold">
+                  {content.officeSection.title}
+                </h3>
+                <p className="font-family-instrument-sans font-thin">
+                  {content.officeSection.descriptionTop}
+                </p>
 
-              <ImageCarousel
-                images={content.officeSection.images}
-                className="sm:mx-16 md:hidden"
-                showArrows={true}
-                showDots={true}
-                autoPlay={true}
-                autoPlayInterval={4000}
-                altTextPrefix="My Office"
-              />
+                <ImageCarousel
+                  images={content.officeSection.images}
+                  className="sm:mx-16 md:hidden"
+                  showArrows={true}
+                  showDots={true}
+                  autoPlay={true}
+                  autoPlayInterval={4000}
+                  altTextPrefix="My Office"
+                />
 
-              <p className="font-family-instrument-sans font-thin">
-                {content.officeSection.descriptionBottom}
-              </p>
+                <p className="font-family-instrument-sans font-thin">
+                  {content.officeSection.descriptionBottom}
+                </p>
 
-              <RoundedButton
-                text={content.contactButtonText}
-                className="bg-amber-500 hover:bg-amber-600"
-                destination="/contact"
-              />
+                <RoundedButton
+                  text={content.contactButtonText}
+                  className="bg-amber-500 hover:bg-amber-600"
+                  destination="/contact"
+                />
+              </div>
+
+              <div className="hidden flex-1 overflow-clip rounded-lg md:block">
+                <ImageCarousel
+                  images={content.officeSection.images}
+                  className="object-fill"
+                  showArrows={true}
+                  showDots={true}
+                  autoPlay={true}
+                  autoPlayInterval={4000}
+                  altTextPrefix="My Office"
+                />
+              </div>
             </div>
 
-            <div className="hidden flex-1 overflow-clip rounded-lg md:block">
-              <ImageCarousel
-                images={content.officeSection.images}
-                className="object-fill"
-                showArrows={true}
-                showDots={true}
-                autoPlay={true}
-                autoPlayInterval={4000}
-                altTextPrefix="My Office"
-              />
+            <div className="flex flex-col items-center space-y-8 pt-32">
+              <div className="flex flex-wrap items-center justify-center">
+                {content.accreditationsSection.logos.map((logo, index) => (
+                  <img
+                    key={index}
+                    src={urlFor(logo).url()}
+                    alt={`Accreditation Logo ${index + 1}`}
+                    className="mx-4 inline h-28 object-contain opacity-70 grayscale"
+                  />
+                ))}
+              </div>
+              <p className="font-family-instrument-sans text-sm opacity-70">
+                {content.accreditationsSection.description}
+              </p>
             </div>
           </div>
         </Parallax>

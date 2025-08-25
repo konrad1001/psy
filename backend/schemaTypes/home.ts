@@ -100,5 +100,23 @@ export default {
       type: 'string',
       description: 'This button links to the contact page',
     },
+    {
+      name: 'accreditationsSection',
+      title: 'Accreditations Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+        {
+          name: 'logos',
+          title: 'Logos',
+          type: 'array',
+          of: [{type: 'image'}],
+        },
+      ],
+    },
   ],
 }

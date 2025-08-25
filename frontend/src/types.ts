@@ -22,6 +22,7 @@ export interface HomePageData {
   splashImage: SanityImage;
   officeSection: HomeOfficeSection;
   contactButtonText: string;
+  accreditationsSection: HomeAccreditationsSection;
 }
 
 export interface HomeOfficeSection {
@@ -29,6 +30,11 @@ export interface HomeOfficeSection {
   descriptionTop: string;
   descriptionBottom: string;
   images: SanityImage[];
+}
+
+export interface HomeAccreditationsSection {
+  description: string;
+  logos: SanityImage[];
 }
 
 export interface AboutPageData {
@@ -118,6 +124,10 @@ export interface SanityImage {
 
 export interface FooterData {
   footerText: string;
+  helpfulLinks: {
+    toggle: boolean;
+    text: PortableTextBlock[];
+  };
 }
 
 export class ColourData {
