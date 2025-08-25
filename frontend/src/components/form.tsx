@@ -56,7 +56,6 @@ function Form() {
 
   return (
     <>
-      {/* Actual form */}
       <form
         className="space-y-4"
         onSubmit={handleSubmit}
@@ -66,15 +65,6 @@ function Form() {
         data-netlify-honeypot="bot-field"
       >
         <input type="hidden" name="form-name" value="contact" />
-
-        {/* Honeypot field for spam protection */}
-        <p style={{ display: "none" }}>
-          <label>
-            Don't fill this out if you're human:
-            <input name="bot-field" />
-          </label>
-        </p>
-
         <div>
           <label className="font-family-label mb-2 block">
             Your Name
