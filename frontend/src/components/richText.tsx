@@ -50,7 +50,7 @@ export const RichText = ({
     },
   };
   return (
-    <div className={`font-thin ${className}`}>
+    <div className={` ${className}`}>
       <PortableText value={content} components={components} />
     </div>
   );

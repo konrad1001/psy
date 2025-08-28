@@ -13,15 +13,15 @@ function Contact({ content, config }: ContactProps) {
     <section className="flex flex-col" id="contact">
       <div
         style={{ backgroundColor: config.primary.hex }}
-        className="font-family-instrument-sans flex flex-col px-8 py-24 text-black transition-all duration-0 ease-in-out sm:px-16 lg:px-32"
+        className="flex flex-col px-8 py-24 text-black transition-all duration-0 ease-in-out sm:px-16 lg:px-32"
       >
         <div className="pointer-events-none absolute inset-0 h-full opacity-50" />
 
-        <h1 className="font-family-inria-sans mb-8 mt-16 flex flex-col space-y-2 text-4xl font-bold">
+        <h1 className="mb-8 mt-16 flex flex-col space-y-2 text-4xl font-bold">
           {content.title}
         </h1>
 
-        <RichText content={content.description} className="mb-16 font-thin" />
+        <RichText content={content.description} className="mb-16" />
 
         {/* Main Content */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -30,9 +30,7 @@ function Contact({ content, config }: ContactProps) {
             <h2 className="font-family-label text-xl font-bold">
               {content.fees.title}
             </h2>
-            {content.fees.description && (
-              <p className="font-thin">{content.fees.description}</p>
-            )}
+            {content.fees.description && <p>{content.fees.description}</p>}
             <div className="flex flex-col gap-4 py-8">
               {content.fees.items.map((fee, index) => (
                 <div
@@ -42,7 +40,7 @@ function Contact({ content, config }: ContactProps) {
                   <h3 className="font-family-label mb-2 text-lg font-bold">
                     {fee.title}
                   </h3>
-                  <p className="font-thin opacity-70">{fee.body}</p>
+                  <p className="opacity-70">{fee.body}</p>
                 </div>
               ))}
             </div>
@@ -58,9 +56,7 @@ function Contact({ content, config }: ContactProps) {
               <h2 className="font-family-label mb-4 text-xl font-bold">
                 {content.details.title}
               </h2>
-              <p className="text-s font-thin opacity-70">
-                {content.details.name}
-              </p>
+              <p className="text-s opacity-70">{content.details.name}</p>
               <p className="text-s opacity-70">{content.details.email}</p>
             </div>
             <div>
@@ -68,7 +64,7 @@ function Contact({ content, config }: ContactProps) {
                 {content.location.title}
               </h2>
               {content.location.addressFields.map((line, index) => (
-                <p key={index} className="text-s font-thin opacity-70">
+                <p key={index} className="text-s opacity-70">
                   {line}
                 </p>
               ))}

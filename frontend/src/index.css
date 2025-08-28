@@ -4,8 +4,8 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-family-inria-sans: "Inria Sans", sans-serif;
-  --font-family-instrument-sans: "Instrument Sans", sans-serif;
+  --: "Inria Sans", sans-serif;
+  --: "Instrument Sans", sans-serif;
   --font-family-inter: "Inter", sans-serif;
 
   --font-family-label--font-weight: 300;

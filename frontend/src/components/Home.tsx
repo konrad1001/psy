@@ -24,18 +24,16 @@ function Home({ content, config }: HomeProps) {
           <div className="my-32 flex-col">
             <div className="flex flex-col justify-between space-y-4 md:flex-row">
               <div className="flex-1 flex-col space-y-4 md:pr-16 lg:pr-16">
-                <h1 className="font-family-inria-sans text-4xl font-bold md:text-6xl">
+                <h1 className="text-4xl font-bold md:text-6xl">
                   {content.therapistName}
                 </h1>
-                <h2 className="font-family-instrument-sans text-2xl font-semibold md:text-4xl">
+                <h2 className="text-2xl font-semibold md:text-4xl">
                   {content.title}
                 </h2>
-                <p className="font-family-instrument-sans text-md pb-4 font-thin opacity-70 md:text-2xl">
+                <p className="text-md pb-4 opacity-70 md:text-2xl">
                   {content.pronouns}
                 </p>
-                <p className="font-family-instrument-sans pb-8 pr-8 font-thin">
-                  {content.introText}
-                </p>
+                <p className="pb-8 pr-8">{content.introText}</p>
               </div>
 
               <div className="flex flex-1 xl:ml-64">
@@ -58,12 +56,8 @@ function Home({ content, config }: HomeProps) {
           <div className="absolute inset-0 flex items-center justify-center">
             <Parallax speed={-0}>
               <div className="mx-8 flex-col space-y-2 rounded-lg bg-black/20 p-6 text-white backdrop-blur-[2px] backdrop-brightness-90 sm:mx-16 md:space-y-8 md:p-12 lg:mr-80">
-                <p className="font-family-inria-sans text-2xl font-bold">
-                  {content.approachTitle}
-                </p>
-                <p className="font-family-instrument-sans pb-4 font-thin">
-                  {content.approachText}
-                </p>
+                <p className="text-2xl font-bold">{content.approachTitle}</p>
+                <p className="pb-4">{content.approachText}</p>
                 <RoundedButton
                   text={content.learnMoreButtonText}
                   className="bg-primary hover:bg-primary-dark"
@@ -81,12 +75,10 @@ function Home({ content, config }: HomeProps) {
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center space-y-8 md:flex-row">
               <div className="flex flex-1 flex-col space-y-8 md:mr-16">
-                <h3 className="font-family-inria-sans text-2xl font-bold">
+                <h3 className="text-2xl font-bold">
                   {content.officeSection.title}
                 </h3>
-                <p className="font-family-instrument-sans font-thin">
-                  {content.officeSection.descriptionTop}
-                </p>
+                <p>{content.officeSection.descriptionTop}</p>
 
                 <ImageCarousel
                   images={content.officeSection.images}
@@ -98,9 +90,7 @@ function Home({ content, config }: HomeProps) {
                   altTextPrefix="My Office"
                 />
 
-                <p className="font-family-instrument-sans font-thin">
-                  {content.officeSection.descriptionBottom}
-                </p>
+                <p>{content.officeSection.descriptionBottom}</p>
 
                 <RoundedButton
                   text={content.contactButtonText}
@@ -133,7 +123,7 @@ function Home({ content, config }: HomeProps) {
                   />
                 ))}
               </div>
-              <p className="font-family-instrument-sans text-sm opacity-70">
+              <p className="text-sm opacity-70">
                 {content.accreditationsSection.description}
               </p>
             </div>

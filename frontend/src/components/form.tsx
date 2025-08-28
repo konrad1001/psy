@@ -126,7 +126,7 @@ function Form() {
           <button
             type="submit"
             disabled={isSubmitted}
-            className={`font-family-instrument-sans self-start rounded-full px-8 py-3 font-bold shadow-md transition-colors duration-300 ${
+            className={`self-start rounded-full px-8 py-3 font-bold shadow-md transition-colors duration-300 ${
               isSubmitted
                 ? "bg-primary/80 text-white"
                 : "bg-slate-300 text-black hover:bg-slate-400"

@@ -11,7 +11,7 @@ function RoundedButton({
 }: RoundedButtonProps) {
   return (
     <a
-      className={`font-family-instrument-sans self-start rounded-full px-8 py-3 font-bold shadow-md transition-colors duration-300 ${className}`}
+      className={`self-start rounded-full px-8 py-3 font-bold shadow-md transition-colors duration-300 ${className}`}
       href={destination}
     >
       {text}
