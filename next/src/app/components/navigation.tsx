@@ -141,7 +141,7 @@ function Navigation({ content }: NavigationProps) {
 
       <div className="flex-col items-center">
         {navPanelOpen && (
-          <div className="fixed left-0 top-20 z-40 h-full w-full bg-slate-50 shadow-lg lg:hidden">
+          <div className="fixed left-0 top-20 z-40 h-full w-full bg-white shadow-lg lg:hidden">
             <div className="flex flex-col items-center justify-center space-y-4 p-8">
               <NavBarButton
                 label={content.tabNames[0] || "Home"}
