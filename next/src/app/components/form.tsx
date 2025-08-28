@@ -41,8 +41,9 @@ function Form() {
     });
 
     try {
-      await fetch("/", {
+      await fetch("/__forms.html", {
         method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: netlifyFormData,
       });
 
@@ -60,8 +61,6 @@ function Form() {
         onSubmit={handleSubmit}
         name="contact"
         method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
       >
         <input type="hidden" name="form-name" value="contact" />
         <div>
