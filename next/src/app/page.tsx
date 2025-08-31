@@ -50,11 +50,10 @@ async function Home() {
       <div className="relative flex min-h-screen">
         <img
           src={urlFor(content.splashImage).url()}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover brightness-75"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <div className="flex items-center justify-center">
-          <div className="mx-8 flex-col space-y-2 rounded-lg bg-black/20 p-6 text-white backdrop-blur-[2px] backdrop-brightness-90 sm:mx-16 md:space-y-8 md:p-12 lg:mr-80">
+        <div className="relative z-10 flex items-center justify-center">
+          <div className="mx-8 flex-col space-y-2 rounded-lg bg-black/40 p-6 text-white backdrop-blur-[1px] sm:mx-16 md:space-y-8 md:p-12 lg:mr-80">
             <p className="font-header text-2xl font-bold">
               {content.approachTitle}
             </p>
