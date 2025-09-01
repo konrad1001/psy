@@ -133,3 +133,16 @@ export interface FooterData {
 export class ColourData {
   hex?: string = "#000000";
 }
+
+export interface TestimonialData {
+  toggle: boolean;
+  title: string;
+  content: PortableTextBlock[];
+  testimonials: TestimonialCard[];
+}
+
+export interface TestimonialCard {
+  clientName: string;
+  notes: PortableTextBlock[];
+  date?: string;
+}

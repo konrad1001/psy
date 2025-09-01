@@ -1,20 +1,25 @@
 import { client } from "@/lib/client";
-import { GlobalConfig, HomePageData } from "@/types/types";
+import { TestimonialData, GlobalConfig, HomePageData } from "@/types/types";
 import { urlFor } from "@/utils/urlFor";
 import RoundedButton from "./components/roundedButton";
 import ImageCarousel from "./components/carousel";
+import Testimonials from "./components/testimonials";
 
 async function fetchContent(): Promise<{
   content: HomePageData;
   config: GlobalConfig;
+  testimonials: TestimonialData;
 }> {
   const content = await client.fetch<HomePageData>("*[_type == 'homePage'][0]");
   const config = await client.fetch<GlobalConfig>("*[_type == 'global'][0]");
-  return { content, config };
+  const testimonials = await client.fetch<TestimonialData>(
+    "*[_type == 'testimonials'][0]",
+  );
+  return { content, config, testimonials };
 }
 
 async function Home() {
-  const { content, config } = await fetchContent();
+  const { content, config, testimonials } = await fetchContent();
 
   return (
     <section id="home" className="flex flex-col">
@@ -91,7 +96,7 @@ async function Home() {
 
               <RoundedButton
                 text={content.contactButtonText}
-                className="bg-amber-500 hover:bg-amber-600"
+                className="self-start bg-amber-500 hover:bg-amber-600"
                 destination="/contact"
               />
             </div>
@@ -108,22 +113,38 @@ async function Home() {
               />
             </div>
           </div>
-
-          <div className="flex flex-col items-center space-y-8 pt-32">
-            <div className="flex flex-wrap items-center justify-center">
-              {content.accreditationsSection.logos.map((logo, index) => (
-                <img
-                  key={index}
-                  src={urlFor(logo).url()}
-                  alt={`Accreditation Logo ${index + 1}`}
-                  className="mx-4 inline h-28 object-contain opacity-70 grayscale"
-                />
-              ))}
+        </div>
+      </div>
+      <div
+        className={`${testimonials.toggle ? "bg-white py-32" : "bg-slate-200 pb-32"} px-8 sm:px-16 lg:px-32`}
+      >
+        {/* Testimonials */}
+        {testimonials.testimonials.length > 0 && testimonials.toggle && (
+          <div>
+            <h2 className="font-header text-2xl font-bold">Success Stories</h2>
+            <div className="pb-16">
+              <Testimonials
+                testimonials={testimonials.testimonials.slice(0, 3)}
+              />
             </div>
-            <p className="text-sm opacity-70">
-              {content.accreditationsSection.description}
-            </p>
           </div>
+        )}
+
+        {/* Accreditations */}
+        <div className="flex flex-col items-center space-y-8">
+          <div className="flex flex-wrap items-center justify-center">
+            {content.accreditationsSection.logos.map((logo, index) => (
+              <img
+                key={index}
+                src={urlFor(logo).url()}
+                alt={`Accreditation Logo ${index + 1}`}
+                className="mx-4 inline h-28 object-contain opacity-70 grayscale"
+              />
+            ))}
+          </div>
+          <p className="text-sm opacity-70">
+            {content.accreditationsSection.description}
+          </p>
         </div>
       </div>
     </section>

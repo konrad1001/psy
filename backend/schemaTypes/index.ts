@@ -6,4 +6,14 @@ import about from './about'
 import services from './services'
 import contact from './contact'
 import footer from './footer'
-export const schemaTypes = [global, navigation, homePage, about, services, contact, footer]
+import testimonials from './testimonials'
+export const schemaTypes = [
+  global,
+  navigation,
+  homePage,
+  about,
+  services,
+  contact,
+  footer,
+  testimonials,
+]
