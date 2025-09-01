@@ -53,14 +53,27 @@ function Testimonials({ testimonials }: { testimonials: TestimonialCard[] }) {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="w-full flex-shrink-0 transition-opacity duration-500 ease-in-out"
+                className="flex w-full flex-shrink-0 flex-col justify-around transition-opacity duration-500 ease-in-out"
                 style={{ opacity: activeIndex === index ? 1 : 0.1 }}
               >
                 <RichText
                   content={testimonial.notes}
                   className="text-md sm:text-xl"
                 />
-                <h3 className="opacity-50">{testimonial.clientName}</h3>
+                <div className="flex flex-row items-center justify-center space-x-2">
+                  <div className="bg-primary/30 flex h-10 w-10 items-center justify-center rounded-full text-center">
+                    <h3>
+                      {testimonial.clientName.charAt(0).toUpperCase() +
+                        (testimonial.clientName.split(" ").length > 1
+                          ? testimonial.clientName
+                              .split(" ")[1]
+                              .charAt(0)
+                              .toUpperCase()
+                          : "")}
+                    </h3>
+                  </div>
+                  <h3 className="opacity-50">{testimonial.clientName}</h3>
+                </div>
               </div>
             ))}
           </div>
