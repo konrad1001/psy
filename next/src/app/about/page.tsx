@@ -15,6 +15,9 @@ import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 export const metadata: Metadata = {
   title: "About",
   description: "Learn more about my psychotherapy services in Ealing.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 async function fetchContent(): Promise<{

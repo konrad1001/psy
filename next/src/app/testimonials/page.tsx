@@ -7,6 +7,9 @@ import { Quote } from "lucide-react";
 export const metadata: Metadata = {
   title: "Testimonials",
   description: "Client testimonials and success stories",
+  alternates: {
+    canonical: "/testimonials",
+  },
 };
 
 async function fetchContent(): Promise<{

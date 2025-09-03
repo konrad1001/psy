@@ -7,6 +7,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with me to book a free consultation.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 async function fetchContent(): Promise<{

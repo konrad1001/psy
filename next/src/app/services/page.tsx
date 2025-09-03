@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Therapy",
   description:
     "The word Gestalt means 'an organised whole, that is perceived as greater than the sum of its parts'. Find out more about my approach and the types of contract I offer",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 async function fetchContent(): Promise<{
