@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://psychotherapy-ealing.co.uk
+
+# Sitemaps
+Sitemap: https://psychotherapy-ealing.co.uk/sitemap.xml
