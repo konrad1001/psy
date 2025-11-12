@@ -28,17 +28,17 @@ export const metadata: Metadata = {
   description:
     "I'm Adam Souter, a UKCP accredited psychotherapist based in Ealing, West London.",
   alternates: {
-    canonical: "https://www.psychotherapy-ealing.co.uk",
+    canonical: "https://psychotherapy-ealing.co.uk",
   },
   openGraph: {
     title: "Psychotherapy Ealing",
     description:
       "I'm Adam Souter, a UKCP accredited psychotherapist based in Ealing, West London.",
-    url: "https://www.psychotherapy-ealing.co.uk",
+    url: "https://psychotherapy-ealing.co.uk",
     siteName: "Psychotherapy Ealing",
     images: [
       {
-        url: "https://www.psychotherapy-ealing.co.uk/circle_logo.png",
+        url: "https://psychotherapy-ealing.co.uk/circle_logo.png",
         width: 640,
         height: 640,
         alt: "Psychotherapy Ealing",

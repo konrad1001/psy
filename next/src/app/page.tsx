@@ -89,7 +89,7 @@ async function Home() {
                 showDots={true}
                 autoPlay={true}
                 autoPlayInterval={4000}
-                altTextPrefix="My Office"
+                altTextPrefix="Psychotherapy office space in Ealing"
               />
 
               <p>{content.officeSection.descriptionBottom}</p>
@@ -109,7 +109,7 @@ async function Home() {
                 showDots={true}
                 autoPlay={true}
                 autoPlayInterval={4000}
-                altTextPrefix="My Office"
+                altTextPrefix="Psychotherapy office space in Ealing"
               />
             </div>
           </div>
