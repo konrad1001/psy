@@ -2,11 +2,11 @@
 
 import { useState, useCallback, useEffect } from "react";
 
-import type { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "@/utils/urlFor";
+import { SanityImageSource } from "@sanity/image-url";
 
 interface ImageCarouselProps {
-  images: SanityImageObject[];
+  images: SanityImageSource[];
   className?: string;
   showArrows?: boolean;
   showDots?: boolean;
