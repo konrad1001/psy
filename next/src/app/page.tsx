@@ -21,6 +21,8 @@ async function fetchContent(): Promise<{
 async function Home() {
   const { content, config, testimonials } = await fetchContent();
 
+  let percent = content.approachBoxOffset ?? 50;
+
   return (
     <section id="home" className="flex flex-col">
       {/* Green */}
@@ -52,23 +54,25 @@ async function Home() {
           </div>
         </div>
       </div>
-      <div className="relative flex min-h-screen">
+      <div className="relative min-h-screen">
         <img
           src={urlFor(content.splashImage).url()}
           className="absolute inset-0 h-full w-full object-cover brightness-75"
         />
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="mx-8 flex-col space-y-2 rounded-lg bg-black/40 p-6 text-white backdrop-blur-[1px] sm:mx-16 md:space-y-8 md:p-12 lg:mr-80">
-            <p className="font-header text-2xl font-bold">
-              {content.approachTitle}
-            </p>
-            <p className="pb-4">{content.approachText}</p>
-            <RoundedButton
-              text={content.learnMoreButtonText}
-              className="bg-primary hover:bg-primary-dark"
-              destination="/about"
-            />
-          </div>
+
+        <div
+          style={{ top: `${percent}%` }}
+          className={`absolute mx-8 -translate-y-1/2 flex-col space-y-2 rounded-lg bg-black/40 p-6 text-white backdrop-blur-[1px] sm:mx-16 md:space-y-8 md:p-12 lg:mr-80`}
+        >
+          <p className="font-header text-2xl font-bold">
+            {content.approachTitle}
+          </p>
+          <p className="pb-4">{content.approachText}</p>
+          <RoundedButton
+            text={content.learnMoreButtonText}
+            className="bg-primary hover:bg-primary-dark"
+            destination="/about"
+          />
         </div>
       </div>
 

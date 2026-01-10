@@ -62,6 +62,15 @@ export default {
       },
     },
     {
+      name: 'approachBoxOffset',
+      title: 'Box Offset',
+      type: 'number',
+      description:
+        'Control the offset of this box relative to the image its in as a percentage. Setting this value to 50 will position the box directly in the centre.',
+      validation: (Rule: {min: (arg0: number) => any; max: (arg1: number) => any}) =>
+        Rule.min(0).max(100),
+    },
+    {
       name: 'officeSection',
       title: 'Office Section',
       type: 'object',

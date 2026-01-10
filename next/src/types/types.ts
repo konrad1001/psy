@@ -19,6 +19,7 @@ export interface HomePageData {
   approachTitle: string;
   approachText: string;
   learnMoreButtonText: string;
+  approachBoxOffset?: number;
   splashImage: SanityImage;
   officeSection: HomeOfficeSection;
   contactButtonText: string;
