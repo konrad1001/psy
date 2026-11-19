@@ -1,3 +1,34 @@
+const locationFields = [
+  {
+    name: 'title',
+    title: 'Location Title',
+    type: 'string',
+    description: 'Heading for this location, e.g. "Ealing".',
+  },
+  {
+    name: 'addressFields',
+    title: 'Address Fields',
+    type: 'array',
+    of: [
+      {
+        type: 'string',
+        title: 'Address Line',
+        description:
+          'Each line of the address, e.g., "3 Montpelier Avenue", "Ealing", "London", "W5 2XP".',
+      },
+    ],
+    description: 'Array of address lines for this location.',
+    validation: (Rule: any) => Rule.min(1),
+  },
+  {
+    name: 'mapEmbedUrl',
+    title: 'Map Embed URL',
+    type: 'url',
+    description: 'Google Maps embed URL for this location.',
+    validation: (Rule: any) => Rule.required().uri(),
+  },
+]
+
 export default {
   name: 'contactPage',
   title: 'Contact Page',
@@ -51,43 +82,23 @@ export default {
     },
 
     {
-      name: 'location',
-      title: 'Location',
-      type: 'object',
-      description: 'Location details for the page.',
-      fields: [
+      name: 'locations',
+      title: 'Locations',
+      type: 'array',
+      description:
+        'Locations shown on the contact page. Drag to change the order they appear in.',
+      of: [
         {
-          name: 'title',
-          title: 'Location Title',
-          type: 'string',
-          description: 'Title for the location section.',
-        },
-        {
-          name: 'addressFields',
-          title: 'Address Fields',
-          type: 'array',
-          of: [
-            {
-              type: 'string',
-              title: 'Address Line',
-              description:
-                'Each line of the address, e.g., "3 Montpelier Avenue", "Ealing", "London", "W5 2XP".',
-            },
-          ],
-          description: 'Array of address lines for the contact location.',
-          validation: (Rule: {min: (arg0: number) => any}) => Rule.min(1),
-        },
-
-        {
-          name: 'mapEmbedUrl',
-          title: 'Map Embed URL',
-          type: 'url',
-          description: 'Google Maps embed URL for the location.',
-          validation: (Rule: {
-            required: () => {(): any; new (): any; uri: {(): any; new (): any}}
-          }) => Rule.required().uri(),
+          name: 'location',
+          title: 'Location',
+          type: 'object',
+          fields: locationFields,
+          preview: {
+            select: {title: 'title', subtitle: 'addressFields.0'},
+          },
         },
       ],
+      validation: (Rule: any) => Rule.min(1),
     },
 
     {

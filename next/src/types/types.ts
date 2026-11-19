@@ -79,7 +79,7 @@ export interface ContactPageData {
   description: PortableTextBlock[];
   contactFormTitle: string;
   details: ContactDetails;
-  location: ContactLocation;
+  locations?: ContactLocation[];
   fees: ContactFees;
 }
 
@@ -90,6 +90,7 @@ export interface ContactDetails {
 }
 
 export interface ContactLocation {
+  _key?: string;
   title: string;
   addressFields: string[];
   mapEmbedUrl: string;

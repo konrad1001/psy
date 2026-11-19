@@ -27,6 +27,8 @@ async function fetchContent(): Promise<{
 async function Contact() {
   const { config, content } = await fetchContent();
 
+  const locations = content.locations ?? [];
+
   return (
     <section className="flex flex-col" id="contact">
       <div
@@ -75,29 +77,34 @@ async function Contact() {
               <p className="text-s opacity-70">{content.details.name}</p>
               <p className="text-s opacity-70">{content.details.email}</p>
             </div>
-            <div>
-              <h2 className="font-family-label font-header mb-4 text-xl font-bold">
-                {content.location.title}
-              </h2>
-              {content.location.addressFields.map((line, index) => (
-                <p key={index} className="text-s opacity-70">
-                  {line}
-                </p>
-              ))}
-            </div>
-            <div>
-              <div className="overflow-hidden rounded-lg">
-                <iframe
-                  src={content.location.mapEmbedUrl}
-                  width="100%"
-                  height="450"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+            {locations.map((location, index) => (
+              <div key={location._key ?? index} className="space-y-8">
+                <div>
+                  <h2 className="font-family-label font-header mb-4 text-xl font-bold">
+                    {location.title}
+                  </h2>
+                  {location.addressFields?.map((line, lineIndex) => (
+                    <p key={lineIndex} className="text-s opacity-70">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+                {location.mapEmbedUrl && (
+                  <div className="overflow-hidden rounded-lg">
+                    <iframe
+                      src={location.mapEmbedUrl}
+                      title={`Map of ${location.title}`}
+                      width="100%"
+                      height="450"
+                      style={{ border: 0 }}
+                      allowFullScreen={true}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                  </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
